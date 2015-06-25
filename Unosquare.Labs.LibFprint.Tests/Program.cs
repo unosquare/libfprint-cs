@@ -12,6 +12,7 @@ namespace Unosquare.Labs.LibFprint.Tests
             using (var manager = FingerprintDeviceManager.Instance)
             {
                 manager.Initialize();
+                Console.WriteLine("Initialized Device Manager.");
                 var devices = manager.DiscoverDevices();
 
                 foreach (var device in devices)
