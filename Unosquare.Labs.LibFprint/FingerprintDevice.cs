@@ -14,6 +14,19 @@ namespace Unosquare.Labs.LibFprint
         internal IntPtr RealDevicePtr { get; set; }
         internal Nullable<Interop.fp_dev> RealDevice { get; set; }
 
+        internal List<Interop.fp_print_data> PrintGallery { get; protected set; }
+
+        public FingerprintDevice()
+        {
+            this.PrintGallery = new List<Interop.fp_print_data>();
+        }
+
+        public void LoadPrintGallery()
+        {
+            this.PrintGallery.Clear();
+
+        }
+
         /// <summary>
         /// Opens this fingerprint scanning device.
         /// </summary>
@@ -54,7 +67,7 @@ namespace Unosquare.Labs.LibFprint
 
                 if (printImagePtr != IntPtr.Zero)
                 {
-                    Interop.fp_img_save_to_file(printImagePtr, "enrolled.pgm");
+                    Interop.fp_img_save_to_file(printImagePtr, "last_enrolled.pgm");
                     Interop.fp_img_free(printImagePtr);
                 }
 
@@ -62,6 +75,14 @@ namespace Unosquare.Labs.LibFprint
 
             } while (enrollResult != (int)Interop.fp_enroll_result.FP_ENROLL_COMPLETE);
 
+            var printDataRef = printDataPtr.DereferencePtr<IntPtr>();
+
+
+            var bufferPtr = IntPtr.Zero;
+            Interop.fp_print_data_get_data(printDataRef, out bufferPtr);
+            var printBuffer = bufferPtr.ToArray<byte>();
+
+            Interop.fp_print_data_free(printDataRef);
             var finalResult = (EnrollResult)enrollResult;
             return finalResult;
         }

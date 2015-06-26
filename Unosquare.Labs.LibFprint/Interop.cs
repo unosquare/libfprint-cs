@@ -39,23 +39,11 @@ namespace Unosquare.Labs.LibFprint
 
         public static IntPtr[] fp_discover_devs_pointers(out IntPtr arrayPtr)
         {
-            var ptrList = new System.Collections.Generic.List<IntPtr>();
 
             var baseAddress = fp_discover_devs();
             arrayPtr = baseAddress;
-            if (baseAddress == IntPtr.Zero) return ptrList.ToArray();
 
-            while (true)
-            {
-                var devicePtr = baseAddress.DereferencePtr<IntPtr>();
-                if (devicePtr == IntPtr.Zero)
-                    break;
-
-                ptrList.Add(devicePtr);
-                baseAddress = IntPtr.Add(baseAddress, IntPtr.Size);
-            }
-
-            return ptrList.ToArray();
+            return baseAddress.ToPointerArray();
         }
 
         public static fp_dscv_dev[] fp_discover_devs_structus(out IntPtr arrayPtr)
@@ -324,7 +312,7 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: void
         ///data: fp_print_data*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_free")]
-        public static extern void fp_print_data_free(ref fp_print_data data);
+        public static extern void fp_print_data_free(IntPtr data);
 
 
         /// Return Type: size_t->unsigned int
@@ -332,7 +320,7 @@ namespace Unosquare.Labs.LibFprint
         ///ret: unsigned char**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_get_data")]
         [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)]
-        public static extern uint fp_print_data_get_data(ref fp_print_data data, ref System.IntPtr ret);
+        public static extern uint fp_print_data_get_data(IntPtr data, out System.IntPtr ret);
 
 
         /// Return Type: fp_print_data*

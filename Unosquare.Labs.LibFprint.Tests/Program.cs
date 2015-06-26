@@ -18,6 +18,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                 foreach (var device in devices)
                 {
                     device.Open();
+                    
                     Console.WriteLine();
                     Console.WriteLine("Device {0} - {1}", device.DriverName, device.DriverFullName);
                     Console.WriteLine("    Enroll Stages:      {0}", device.EnrollStagesCount);
