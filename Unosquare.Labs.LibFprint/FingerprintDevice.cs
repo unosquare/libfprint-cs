@@ -14,17 +14,9 @@ namespace Unosquare.Labs.LibFprint
         internal IntPtr RealDevicePtr { get; set; }
         internal Nullable<Interop.fp_dev> RealDevice { get; set; }
 
-        internal List<Interop.fp_print_data> PrintGallery { get; protected set; }
 
         public FingerprintDevice()
         {
-            this.PrintGallery = new List<Interop.fp_print_data>();
-        }
-
-        public void LoadPrintGallery()
-        {
-            this.PrintGallery.Clear();
-
         }
 
         /// <summary>
