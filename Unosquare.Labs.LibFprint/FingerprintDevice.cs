@@ -67,14 +67,14 @@ namespace Unosquare.Labs.LibFprint
 
             } while (enrollResult != (int)Interop.fp_enroll_result.FP_ENROLL_COMPLETE);
 
-            var printDataRef = printDataPtr.DereferencePtr<IntPtr>();
-
+            var printDataRef = printDataPtr.DereferencePtr<Interop.fp_print_data>();
+            //var printDataRef = printDataRefPtr.DereferencePtr<Interop.fp_print_data> ();
 
             var bufferPtr = IntPtr.Zero;
-            Interop.fp_print_data_get_data(printDataRef, out bufferPtr);
+            Interop.fp_print_data_get_data(ref printDataRef, out bufferPtr);
             var printBuffer = bufferPtr.ToArray<byte>();
 
-            Interop.fp_print_data_free(printDataRef);
+            Interop.fp_print_data_free(ref printDataRef);
             var finalResult = (EnrollResult)enrollResult;
             return finalResult;
         }

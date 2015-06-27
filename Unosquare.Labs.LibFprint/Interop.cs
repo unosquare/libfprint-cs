@@ -312,7 +312,7 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: void
         ///data: fp_print_data*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_free")]
-        public static extern void fp_print_data_free(IntPtr data);
+        public static extern void fp_print_data_free(ref fp_print_data data);
 
 
         /// Return Type: size_t->unsigned int
@@ -320,7 +320,7 @@ namespace Unosquare.Labs.LibFprint
         ///ret: unsigned char**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_get_data")]
         [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)]
-        public static extern uint fp_print_data_get_data(IntPtr data, out System.IntPtr ret);
+        public static extern uint fp_print_data_get_data(ref fp_print_data data, out System.IntPtr ret);
 
 
         /// Return Type: fp_print_data*
