@@ -32,32 +32,32 @@ namespace Unosquare.Labs.LibFprint.Tests
                 {
                     var thread = new Thread(() =>
                     {
-                    
-                    // Before we do anything, we need to open the device.
-                    device.Open();
 
-                    // Now we print some info about the device.
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine();
-                    Console.WriteLine("Device {0} - {1}", device.DriverName, device.DriverFullName);
-                    Console.WriteLine("    Enroll Stages:      {0}", device.EnrollStagesCount);
-                    Console.WriteLine("    Supports Imaging:   {0}", device.SupportsImaging);
-                    Console.WriteLine("    Supports Ident:     {0}", device.SupportsIdentification);
-                    Console.WriteLine("    Imaging Dimensions: {0}x{1}", device.ImageWidth, device.ImageHeight);
+                        // Before we do anything, we need to open the device.
+                        device.Open();
 
-                    // We will enroll a few fingerprints into the gallery.
-                    using (var gallery = new FingerprintGallery())
-                    {
-                        var enrollCount = 0;
-                        while (enrollCount < 5)
+                        // Now we print some info about the device.
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine();
+                        Console.WriteLine("Device {0} - {1}", device.DriverName, device.DriverFullName);
+                        Console.WriteLine("    Enroll Stages:      {0}", device.EnrollStagesCount);
+                        Console.WriteLine("    Supports Imaging:   {0}", device.SupportsImaging);
+                        Console.WriteLine("    Supports Ident:     {0}", device.SupportsIdentification);
+                        Console.WriteLine("    Imaging Dimensions: {0}x{1}", device.ImageWidth, device.ImageHeight);
+
+                        // We will enroll a few fingerprints into the gallery.
+                        using (var gallery = new FingerprintGallery())
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine(" >> Enroll count: {0}. Enroll a new finger now . . .", enrollCount);
-
-                            // Call the enrollment method
-                            var enrollResult = device.EnrollFingerprint("enroll.pgm");
-                            if (enrollResult.IsEnrollComplete)
+                            var enrollCount = 0;
+                            while (enrollCount < 5)
                             {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine(" >> Enroll count: {0}. Enroll a new finger now . . .", enrollCount);
+
+                                // Call the enrollment method
+                                var enrollResult = device.EnrollFingerprint("enroll.pgm");
+                                if (enrollResult.IsEnrollComplete)
+                                {
 
                                     Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine(" >> Now, verify your scan just to make sure . . .");
@@ -75,44 +75,44 @@ namespace Unosquare.Labs.LibFprint.Tests
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Could not verify. Try again!");
                                     }
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Try Again -- Error Code {0} - {1}", enrollResult.ResultCode, enrollResult.Result);
+                                    // HACK: for some reason we needed the Reset method to be called. Otherwise the reader would blink rapidly and get stuck
+                                    device.Reset();
+                                }
                             }
-                            else
+
+                            // Now, let's try some identification in the gallery we created earlier
+                            // with enrollment and verification operations
+                            while (true)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Try Again -- Error Code {0} - {1}", enrollResult.ResultCode, enrollResult.Result);
-                                // HACK: for some reason we needed the Reset method to be called. Otherwise the reader would blink rapidly and get stuck
-                                device.Reset();
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine(" >> Press finger against scanner to identify . . .");
+
+                                // Let's try to identify a fingerprint and getting it's key back.
+                                // a null key means the FP was not identified.
+                                var identified = device.IdentifyFingerprint(gallery, "identify.pgm");
+                                if (identified == null)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Could not identify.");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine("Fingerprint was identified: {0}.", identified);
+                                }
                             }
+
                         }
-
-                        // Now, let's try some identification in the gallery we created earlier
-                        // with enrollment and verification operations
-                        while (true)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine(" >> Press finger against scanner to identify . . .");
-
-                            // Let's try to identify a fingerprint and getting it's key back.
-                            // a null key means the FP was not identified.
-                            var identified = device.IdentifyFingerprint(gallery, "identify.pgm");
-                            if (identified == null)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Could not identify.");
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.WriteLine("Fingerprint was identified: {0}.", identified);
-                            }
-                        }
-
-                    }
 
                     }) { IsBackground = true };
 
                     thread.Start();
-                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Press A to abort the thread . . .");
                     if (Console.ReadKey(true).Key == ConsoleKey.A)
                     {
