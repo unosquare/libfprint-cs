@@ -42,4 +42,33 @@ using (var manager = FingerprintDeviceManager.Instance)
 }
 ```
 
+## Getting it to run on the Raspberry Pi (Raspbian)
+
+Raspbian has a fairly outdated libfprint-dev package (0.4.0). The following script will remove the installed libfprint-dev, install dependencies, pull code from 0.5.1, build it, and install the library.
+
+```shell
+sudo apt-get remove -y libfprint-dev
+sudo apt-get autoremove -y
+sudo apt-get install -y libusb-1.0-0-dev
+sudo apt-get install -y libnss3-dev
+sudo apt-get install -y libgtk2.0-dev
+
+wget http://people.freedesktop.org/~hadess/libfprint-0.5.1.tar.xz
+tar xf libfprint-0.5.1.tar.xz
+rm libfprint-0.5.1.tar.xz
+cd libfprint-0.5.1
+./configure
+make
+sudo make install
+sudo make clean
+cd ..
+sudo cp /usr/local/lib/libfprint.so libfprint.so
+sudo find / -iname "libfprint.so"
+```
+
+You will also obviously want to install mono for any of the above to work . . .
+```shell
+sudo apt-get install mono-complete
+```
+
 Thanks to the libfprint developers!
