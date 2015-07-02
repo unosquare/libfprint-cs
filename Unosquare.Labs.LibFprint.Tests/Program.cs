@@ -116,9 +116,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                     Console.WriteLine("Press A to abort the thread . . .");
                     if (Console.ReadKey(true).Key == ConsoleKey.A)
                     {
-                        if (thread.ThreadState == ThreadState.Running)
-                            thread.Abort();
-
+                        thread.Abort();
                         device.Reset();
                     }
 
