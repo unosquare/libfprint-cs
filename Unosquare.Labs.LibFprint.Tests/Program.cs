@@ -14,7 +14,7 @@ namespace Unosquare.Labs.LibFprint.Tests
 
 
 
-           
+
 
             // The device manager discovers devices. It's a singleton and is used to detect connected devices
             // it also create references to the fingerprint scanners
@@ -30,9 +30,12 @@ namespace Unosquare.Labs.LibFprint.Tests
                 // Let's do stuff with each of the discovered devices (typically only 1)
                 foreach (var device in devices)
                 {
+                    var thread = new Thread(() =>
+                    {
+                    
                     // Before we do anything, we need to open the device.
                     device.Open();
-                    
+
                     // Now we print some info about the device.
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine();
@@ -50,13 +53,12 @@ namespace Unosquare.Labs.LibFprint.Tests
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(" >> Enroll count: {0}. Enroll a new finger now . . .", enrollCount);
-                            
+
                             // Call the enrollment method
                             var enrollResult = device.EnrollFingerprint("enroll.pgm");
                             if (enrollResult.IsEnrollComplete)
                             {
-                                var thread = new Thread(() =>
-                                {
+
                                     Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine(" >> Now, verify your scan just to make sure . . .");
 
@@ -73,17 +75,6 @@ namespace Unosquare.Labs.LibFprint.Tests
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Could not verify. Try again!");
                                     }
-                                }) { IsBackground = true };
-
-                                thread.Start();
-                                Console.WriteLine("Press A to Abort . . .");
-                                if (Console.ReadKey(true).Key == ConsoleKey.A)
-                                {
-                                    thread.Abort();
-                                    device.Reset();
-                                }
-                                    
-
                             }
                             else
                             {
@@ -114,16 +105,21 @@ namespace Unosquare.Labs.LibFprint.Tests
                                 Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.WriteLine("Fingerprint was identified: {0}.", identified);
                             }
-
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("Pres Q to quit. Any other key to try again.");
-
-                            // Ask the user if he wants another go.
-                            var consoleKey = Console.ReadKey(true);
-                            if (consoleKey.Key == ConsoleKey.Q)
-                                break;
                         }
 
+                    }
+
+                    }) { IsBackground = true };
+
+                    thread.Start();
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("Press A to abort the thread . . .");
+                    if (Console.ReadKey(true).Key == ConsoleKey.A)
+                    {
+                        if (thread.ThreadState == ThreadState.Running)
+                            thread.Abort();
+
+                        device.Reset();
                     }
 
                     // We realease unmanaged resources for the device.
