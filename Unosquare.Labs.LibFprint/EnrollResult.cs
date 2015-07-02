@@ -7,6 +7,7 @@ namespace Unosquare.Labs.LibFprint
 {
     public enum EnrollResult
     {
+        Unspecified = 0,
         EnrollComplete = 1,
         EnrollFailed = 2,
         EnrollStagePassed = 3,

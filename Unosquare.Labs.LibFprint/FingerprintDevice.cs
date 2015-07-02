@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Unosquare.Labs.LibFprint
@@ -15,7 +16,7 @@ namespace Unosquare.Labs.LibFprint
         internal Nullable<Interop.fp_dev> RealDevice { get; set; }
 
 
-        public FingerprintDevice()
+        internal FingerprintDevice()
         {
         }
 
@@ -39,7 +40,6 @@ namespace Unosquare.Labs.LibFprint
             this.ImageWidth = Interop.fp_dev_get_img_width(ref realDevice);
             this.SupportsVariableImagingDimensions = this.ImageWidth <= 0 || this.ImageHeight <= 0;
             this.EnrollStagesCount = Interop.fp_dev_get_nr_enroll_stages(ref realDevice);
-
         }
 
         /// <summary>
@@ -50,6 +50,68 @@ namespace Unosquare.Labs.LibFprint
             if (IsOpen == false) return;
             Interop.fp_dev_close(this.RealDevicePtr);
             this.Open();
+        }
+
+        public EnrollStageResult ExecuteEnrollStage()
+        {
+            return ExecuteEnrollStage(null);
+        }
+
+        public EnrollStageResult ExecuteEnrollStage(string pgmFilePath)
+        {
+            // Make sure the device is open
+            if (IsOpen == false)
+                this.Open();
+
+            var enrollResultCode = 0;
+            var printDataPtr = IntPtr.Zero;
+            var printImagePtr = IntPtr.Zero;
+            byte[] fingerprintData = null;
+
+            enrollResultCode = Interop.fp_enroll_finger_img(this.RealDevicePtr, out printDataPtr, out printImagePtr);
+
+            // Save the PGM file if required by the user
+            if (string.IsNullOrWhiteSpace(pgmFilePath) == false && printImagePtr != IntPtr.Zero)
+            {
+                Interop.fp_img_save_to_file(printImagePtr, pgmFilePath);
+                Interop.fp_img_free(printImagePtr);
+            }
+
+            // Create the fingerprint data buffer if the enroll fp data is available
+            if (enrollResultCode == (int)EnrollResult.EnrollStagePassed || enrollResultCode == (int)EnrollResult.EnrollComplete)
+            {
+                if (printDataPtr != IntPtr.Zero)
+                {
+                    var bufferPtr = IntPtr.Zero;
+                    var bufferLength = System.Convert.ToInt32(Interop.fp_print_data_get_data(printDataPtr, out bufferPtr));
+                    fingerprintData = new byte[bufferLength];
+                    Marshal.Copy(bufferPtr, fingerprintData, 0, fingerprintData.Length);
+                    Interop.fp_print_data_free(printDataPtr);
+                    // TODO: free(bufferPtr) // Maybe Marshal.FreeHGlobal?
+                    Marshal.FreeHGlobal(bufferPtr);
+                }
+            }
+
+            return new EnrollStageResult(enrollResultCode, fingerprintData);
+        }
+
+
+        public string IdentifyFingerprint(FingerprintGallery gallery)
+        {
+            // Make sure the device is open
+            if (IsOpen == false)
+                this.Open();
+
+            uint matchOffset = 0;
+            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, gallery.PointerArray, ref matchOffset, IntPtr.Zero);
+
+            if (matchResult == 1)
+            {
+                return gallery[Convert.ToInt32(matchOffset)];
+            }
+
+            return null;
+
         }
 
         // TODO: This needs quite a bit of work...
@@ -148,11 +210,6 @@ namespace Unosquare.Labs.LibFprint
 
             var finalResult = (EnrollResult)enrollResult;
             return finalResult;
-        }
-
-        public void Identify()
-        {
-            // http://www.reactivated.net/fprint/api/
         }
 
         public bool IsOpen { get { return RealDevice.HasValue; } }

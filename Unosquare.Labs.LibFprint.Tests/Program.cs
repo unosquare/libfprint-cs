@@ -26,7 +26,38 @@ namespace Unosquare.Labs.LibFprint.Tests
                     Console.WriteLine("    Supports Ident:     {0}", device.SupportsIdentification);
                     Console.WriteLine("    Imaging Dimensions: {0}x{1}", device.ImageWidth, device.ImageHeight);
 
-                    device.Enroll();
+                    using (var gallery = new FingerprintGallery())
+                    {
+                        var enrollCount = 0;
+                        while (enrollCount < 5)
+                        {
+                            Console.WriteLine("Enroll count: {0}. Enroll a new finger now.", enrollCount);
+                            var enrollResult = device.ExecuteEnrollStage();
+                            if (enrollResult.IsEnrollComplete)
+                            {
+                                enrollCount++;
+                                gallery.Add("print" + enrollCount.ToString(), enrollResult.FingerprintData);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Try Again -- Error Code {0}", enrollResult.ResultCode);
+                            }
+                        }
+
+                        Console.WriteLine("Enrollment complete. Now let's identify . . .");
+                        var identified = device.IdentifyFingerprint(gallery);
+                        if (identified == null)
+                        {
+                            Console.WriteLine("Could not identify.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Identified: {0}", identified);
+                        }
+
+                    }
+
+
                     device.Dispose();
                 }
 

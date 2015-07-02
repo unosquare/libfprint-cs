@@ -43,9 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnrollResult.cs" />
+    <Compile Include="EnrollStageResult.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FingerprintDevice.cs" />
     <Compile Include="FingerprintDeviceManager.cs" />
+    <Compile Include="FingerprintGallery.cs" />
+    <Compile Include="IdentifyResult.cs" />
     <Compile Include="Interop.cs" />
     <Compile Include="PgmFormatReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
