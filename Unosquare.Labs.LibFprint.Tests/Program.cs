@@ -36,7 +36,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                             if (enrollResult.IsEnrollComplete)
                             {
                                 enrollCount++;
-                                gallery.Add("print" + enrollCount.ToString(), enrollResult.FingerprintData);
+                                gallery.Add("The print " + enrollCount.ToString(), enrollResult.FingerprintData);
                             }
                             else
                             {
