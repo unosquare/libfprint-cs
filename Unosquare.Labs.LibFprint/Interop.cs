@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Unosquare.Labs.LibFprint
 {
+    /// <summary>
+    /// This file was generated automatically. -- Only very few manual modifications were made.
+    /// </summary>
     internal partial class Interop
     {
         private const string FingerprintLibrary = "libfprint.so";
@@ -247,7 +250,7 @@ namespace Unosquare.Labs.LibFprint
         ///enrolled_print: fp_print_data*
         ///img: fp_img**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_verify_finger_img")]
-        public static extern int fp_verify_finger_img(ref fp_dev dev, ref fp_print_data enrolled_print, ref System.IntPtr img);
+        public static extern int fp_verify_finger_img(IntPtr dev, IntPtr enrolled_print, out IntPtr img);
 
 
         /// Return Type: int

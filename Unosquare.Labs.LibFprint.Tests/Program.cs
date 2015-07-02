@@ -36,9 +36,18 @@ namespace Unosquare.Labs.LibFprint.Tests
                             var enrollResult = device.EnrollFingerprint("enroll.pgm");
                             if (enrollResult.IsEnrollComplete)
                             {
-                                enrollCount++;
-                                var printName = "The print " + enrollCount.ToString();
-                                gallery.Add(printName, enrollResult);
+                                Console.WriteLine("Now, verify your scan just to make sure . . .");
+                                var isVerified = device.VerifyFingerprint(enrollResult);
+                                if (isVerified)
+                                {
+                                    enrollCount++;
+                                    var printName = "The print " + enrollCount.ToString();
+                                    gallery.Add(printName, enrollResult);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Could not verify. Try again!");
+                                }
                             }
                             else
                             {

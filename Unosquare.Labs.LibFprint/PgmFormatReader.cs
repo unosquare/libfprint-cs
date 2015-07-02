@@ -1,18 +1,28 @@
-﻿using System;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
-
-namespace Unosquare.Labs.LibFprint
+﻿namespace Unosquare.Labs.LibFprint
 {
+    using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
+    using System.Text;
+
+    /// <summary>
+    /// Provides utility methods to read PGM files into Bitmap objects.
+    /// </summary>
     public static class PgmFormatReader
     {
 
+        /// <summary>
+        /// The standard grayscale palette that is loaded in the static constructor.
+        /// </summary>
         private static readonly ColorPalette GrayscalePalette = null;
 
+        /// <summary>
+        /// Initializes the static <see cref="PgmFormatReader"/> class.
+        /// </summary>
         static PgmFormatReader()
         {
+            
             // We initialize the palette to 256 colors (grayscale)
             // PGM files are always grayscale and we will always represent them in 
             // 256 shades of gray.
@@ -26,6 +36,12 @@ namespace Unosquare.Labs.LibFprint
             }
         }
 
+        /// <summary>
+        /// Reads the specified PGM stream and returns a Bitmap.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <returns></returns>
+        /// <exception cref="BadImageFormatException">PGM Magic Number not found.</exception>
         public static Bitmap Read(Stream stream)
         {
             using (var reader = new BinaryReader(stream, Encoding.ASCII))
@@ -81,6 +97,11 @@ namespace Unosquare.Labs.LibFprint
             }
         }
 
+        /// <summary>
+        /// Reads the specified PGM buffer and returns a Bitmap.
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns></returns>
         public static Bitmap Read(byte[] buffer)
         {
             using (var ms = new MemoryStream(buffer))
@@ -90,6 +111,11 @@ namespace Unosquare.Labs.LibFprint
             }
         }
 
+        /// <summary>
+        /// Reads the specified PGM file and returns a Bitmap.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
         public static Bitmap Read(string path)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -98,6 +124,13 @@ namespace Unosquare.Labs.LibFprint
             }
         }
 
+        /// <summary>
+        /// Reads an integer by reading from a Binary Reader.
+        /// It uses a StringBuilder to hold and parse numbers.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="sb">The sb.</param>
+        /// <returns></returns>
         private static int ReadInteger(BinaryReader reader, StringBuilder sb)
         {
             var c = '\0';

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Unosquare.Labs.LibFprint
+﻿namespace Unosquare.Labs.LibFprint
 {
+    /// <summary>
+    /// An enumeration that represents enrollment results.
+    /// </summary>
     public enum EnrollResult
     {
         Unspecified = 0,

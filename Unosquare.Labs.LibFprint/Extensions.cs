@@ -1,22 +1,28 @@
-using System;
-using System.Collections.Generic;
-
 namespace Unosquare.Labs.LibFprint
 {
+    using System;
+
+    /// <summary>
+    /// Helper methods for pointer management
+    /// </summary>
     static internal class Extensions
     {
+        /// <summary>
+        /// Dereferences the PTR into the given type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ptr">The PTR.</param>
+        /// <returns></returns>
         static public T DereferencePtr<T>(this IntPtr ptr)
         {
             return (T)System.Runtime.InteropServices.Marshal.PtrToStructure(ptr, typeof(T));
         }
 
-        static public T DereferenceDoublePtr<T>(this IntPtr ptr)
-        {
-            var secondPtr = ptr.DereferencePtr<IntPtr>();
-            return (T)System.Runtime.InteropServices.Marshal.PtrToStructure(secondPtr, typeof(T));
-        }
-
-
+        /// <summary>
+        /// Turns the given base address to an array of pointers
+        /// </summary>
+        /// <param name="baseAddress">The base address.</param>
+        /// <returns></returns>
         static public IntPtr[] ToPointerArray(this IntPtr baseAddress)
         {
             var ptrList = new System.Collections.Generic.List<IntPtr>();
@@ -37,18 +43,6 @@ namespace Unosquare.Labs.LibFprint
             return ptrList.ToArray();
         }
 
-        static public T[] ToArray<T>(this IntPtr baseAddress)
-        {
-            var pointerArray = baseAddress.ToPointerArray();
-
-            var resultList = new List<T>();
-            foreach (var ptr in pointerArray)
-            {
-                resultList.Add(ptr.DereferencePtr<T>());
-            }
-
-            return resultList.ToArray();
-        }
     }
 }
 

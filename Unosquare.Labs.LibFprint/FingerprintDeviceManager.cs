@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Unosquare.Labs.LibFprint
+﻿namespace Unosquare.Labs.LibFprint
 {
-    public class FingerprintDeviceManager : IDisposable
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Singleton class to Initialize the fprint library and perform fingerprint reader device discovery.
+    /// Access properties and methods via the Instance Property.
+    /// </summary>
+    public sealed class FingerprintDeviceManager : IDisposable
     {
 
         #region Singleton Implementation
@@ -15,11 +17,20 @@ namespace Unosquare.Labs.LibFprint
         /// </summary>
         private static FingerprintDeviceManager m_Instance = null;
 
-        protected FingerprintDeviceManager()
+        /// <summary>
+        /// Prevents a default instance of the <see cref="FingerprintDeviceManager"/> class from being created.
+        /// </summary>
+        private FingerprintDeviceManager()
         {
             // placeholder
         }
 
+        /// <summary>
+        /// Gets the single instance of the Fingerprint Device Manager
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static FingerprintDeviceManager Instance
         {
             get
@@ -29,7 +40,7 @@ namespace Unosquare.Labs.LibFprint
 
                 return m_Instance;
             }
-            protected set
+            private set
             {
                 m_Instance = value;
             }
@@ -37,13 +48,33 @@ namespace Unosquare.Labs.LibFprint
 
         #endregion
 
-        public bool IsInitialized { get; protected set; }
+        #region Properties
 
-        private IntPtr DeviceDicoveryResultsPtr { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the library is initialized.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is initialized; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsInitialized { get; private set; }
 
 
         /// <summary>
-        /// Initializes the fprint library.
+        /// Holds a pointer to the base address of the array containing
+        /// Discovered device references.
+        /// </summary>
+        /// <value>
+        /// The device dicovery results PTR.
+        /// </value>
+        private IntPtr DeviceDicoveryResultsPtr { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Initializes the fprint library with the given debug level.
+        /// The dibug level is not documented but 3 seems to have some level of verbosity.
         /// </summary>
         /// <param name="debugLevel">The debug level.</param>
         /// <exception cref="System.Exception"></exception>
@@ -52,7 +83,7 @@ namespace Unosquare.Labs.LibFprint
             if (IsInitialized) return;
 
             var result = Interop.fp_init();
-            if (result < 0) 
+            if (result < 0)
                 throw new Exception(string.Format("Failed to initialize fprint library. Result code: {0}", result));
 
             Interop.fp_set_debug(debugLevel);
@@ -61,13 +92,18 @@ namespace Unosquare.Labs.LibFprint
         }
 
         /// <summary>
-        /// Initializes the fprint library with Debug Level = 3
+        /// Initializes the fprint library with Debug Level 0.
         /// </summary>
         public void Initialize()
         {
-            this.Initialize(3);
+            this.Initialize(0);
         }
 
+        /// <summary>
+        /// Performs a discovery of currently connected Fingerprint Scanner devices
+        /// Use the resulting array of FingerPrintDevice to start operating the devices.
+        /// </summary>
+        /// <returns></returns>
         public FingerprintDevice[] DiscoverDevices()
         {
             if (!IsInitialized) this.Initialize();
@@ -96,6 +132,14 @@ namespace Unosquare.Labs.LibFprint
 
         }
 
+        #endregion
+
+        #region IDisposable Implementation and cleanup
+
+        /// <summary>
+        /// Releases the device discovery results.
+        /// This is only for internal purposes.
+        /// </summary>
         private void ReleaseDeviceDiscoveryResults()
         {
             if (DeviceDicoveryResultsPtr != IntPtr.Zero)
@@ -105,9 +149,6 @@ namespace Unosquare.Labs.LibFprint
                 DeviceDicoveryResultsPtr = IntPtr.Zero;
             }
         }
-
-
-        #region IDisposable Implementation
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -131,17 +172,10 @@ namespace Unosquare.Labs.LibFprint
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="releaseOnlyManaged"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool releaseOnlyManaged)
+        private void Dispose(bool releaseOnlyManaged)
         {
             if (releaseOnlyManaged)
             {
-                // free managed resources
-                //if (managedResource != null)
-                //{
-                //    managedResource.Dispose();
-                //    managedResource = null;
-                //}
-
                 return;
             }
 
