@@ -42,6 +42,16 @@ namespace Unosquare.Labs.LibFprint
 
         }
 
+        /// <summary>
+        /// Resets the device by closing and re-opening it.
+        /// </summary>
+        public void Reset()
+        {
+            if (IsOpen == false) return;
+            Interop.fp_dev_close(this.RealDevicePtr);
+            this.Open();
+        }
+
         // TODO: This needs quite a bit of work...
         public EnrollResult Enroll()
         {
@@ -52,7 +62,7 @@ namespace Unosquare.Labs.LibFprint
 
             int enrollResult = 0;
 
-            do
+            while (true)
             {
                 Console.WriteLine("Press your finger to enroll it");
                 var printImagePtr = IntPtr.Zero;
@@ -73,7 +83,11 @@ namespace Unosquare.Labs.LibFprint
 
                 Console.WriteLine("Enroll Result = " + enrollResult);
 
-            } while (enrollResult != (int)Interop.fp_enroll_result.FP_ENROLL_COMPLETE);
+                if (enrollResult == (int)Interop.fp_enroll_result.FP_ENROLL_COMPLETE)
+                    break;
+                else
+                    this.Reset();
+            }
 
             // We now have access to the Print Data structure
             var printData = printDataPtr.DereferencePtr<Interop.fp_print_data>();
