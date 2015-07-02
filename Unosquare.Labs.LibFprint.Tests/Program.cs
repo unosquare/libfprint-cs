@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Unosquare.Labs.LibFprint;
 
 namespace Unosquare.Labs.LibFprint.Tests
@@ -7,6 +8,14 @@ namespace Unosquare.Labs.LibFprint.Tests
     {
         public static void Main(string[] args)
         {
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback((arg) => { }));
+
+
+
+
+           
+
             // The device manager discovers devices. It's a singleton and is used to detect connected devices
             // it also create references to the fingerprint scanners
             using (var manager = FingerprintDeviceManager.Instance)
@@ -46,22 +55,35 @@ namespace Unosquare.Labs.LibFprint.Tests
                             var enrollResult = device.EnrollFingerprint("enroll.pgm");
                             if (enrollResult.IsEnrollComplete)
                             {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(" >> Now, verify your scan just to make sure . . .");
+                                var thread = new Thread(() =>
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine(" >> Now, verify your scan just to make sure . . .");
 
-                                // Although not necessary, we are adding verification just to make sure
-                                var isVerified = device.VerifyFingerprint(enrollResult, "verify.pgm");
-                                if (isVerified)
+                                    // Although not necessary, we are adding verification just to make sure
+                                    var isVerified = device.VerifyFingerprint(enrollResult, "verify.pgm");
+                                    if (isVerified)
+                                    {
+                                        enrollCount++;
+                                        var printName = "The print " + enrollCount.ToString();
+                                        gallery.Add(printName, enrollResult);
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("Could not verify. Try again!");
+                                    }
+                                }) { IsBackground = true };
+
+                                thread.Start();
+                                Console.WriteLine("Press A to Abort . . .");
+                                if (Console.ReadKey(true).Key == ConsoleKey.A)
                                 {
-                                    enrollCount++;
-                                    var printName = "The print " + enrollCount.ToString();
-                                    gallery.Add(printName, enrollResult);
+                                    thread.Abort();
+                                    device.Reset();
                                 }
-                                else
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Could not verify. Try again!");
-                                }
+                                    
+
                             }
                             else
                             {
