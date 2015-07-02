@@ -44,16 +44,21 @@ namespace Unosquare.Labs.LibFprint.Tests
                             }
                         }
 
-                        Console.WriteLine("Enrollment complete. Now let's identify . . .");
-                        var identified = device.IdentifyFingerprint(gallery);
-                        if (identified == null)
+                        while (true)
                         {
-                            Console.WriteLine("Could not identify.");
+                            Console.WriteLine("Press finger against scanner to identify . . .");
+                            var identified = device.IdentifyFingerprint(gallery);
+                            if (identified == null)
+                            {
+                                Console.WriteLine("Could not identify.");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Identified: {0}", identified);
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("Identified: {0}", identified);
-                        }
+
 
                     }
 
