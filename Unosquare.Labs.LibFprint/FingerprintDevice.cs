@@ -224,11 +224,12 @@
 
             var printImagePtr = IntPtr.Zero;
 
+            // Perform verification
+            var resultCode = Interop.fp_verify_finger_img(this.RealDevicePtr, fingerprintPtr, out printImagePtr);
+
             // Save the PGM file if required by the user
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
-            // Perform verification
-            var resultCode = Interop.fp_verify_finger_img(this.RealDevicePtr, fingerprintPtr, out printImagePtr);
             if (resultCode == (int)Interop.fp_verify_result.FP_VERIFY_MATCH)
                 return true;
 
