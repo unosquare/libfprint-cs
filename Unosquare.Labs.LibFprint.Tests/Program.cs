@@ -17,6 +17,7 @@ namespace Unosquare.Labs.LibFprint.Tests
 
                 foreach (var device in devices)
                 {
+                    
                     device.Open();
                     
                     Console.WriteLine();
@@ -32,11 +33,12 @@ namespace Unosquare.Labs.LibFprint.Tests
                         while (enrollCount < 5)
                         {
                             Console.WriteLine("Enroll count: {0}. Enroll a new finger now.", enrollCount);
-                            var enrollResult = device.ExecuteEnrollStage();
+                            var enrollResult = device.EnrollFingerprint("enroll.pgm");
                             if (enrollResult.IsEnrollComplete)
                             {
                                 enrollCount++;
-                                gallery.Add("The print " + enrollCount.ToString(), enrollResult.FingerprintData);
+                                var printName = "The print " + enrollCount.ToString();
+                                gallery.Add(printName, enrollResult);
                             }
                             else
                             {
@@ -47,7 +49,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                         while (true)
                         {
                             Console.WriteLine("Press finger against scanner to identify . . .");
-                            var identified = device.IdentifyFingerprint(gallery);
+                            var identified = device.IdentifyFingerprint(gallery, "identify.pgm");
                             if (identified == null)
                             {
                                 Console.WriteLine("Could not identify.");

@@ -47,6 +47,11 @@ namespace Unosquare.Labs.LibFprint
             InternalList.Add(new Fingerprint() { Identifier = key, Reference = printDataFromBufferPtr });
         }
 
+        public void Add(string key, EnrollStageResult enrollResult)
+        {
+            this.Add(key, enrollResult.FingerprintData);
+        }
+
         public void Add(string key, byte[] fingerprintData)
         {
             this.RegisterFingerprintData(key, fingerprintData);

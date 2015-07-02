@@ -18,6 +18,8 @@ namespace Unosquare.Labs.LibFprint
 
         internal FingerprintDevice()
         {
+            // We want to prevent standalone instances of this class.
+            // Only instances created via FingerprintDeviceManager are valid.
         }
 
         /// <summary>
@@ -52,12 +54,18 @@ namespace Unosquare.Labs.LibFprint
             this.Open();
         }
 
-        public EnrollStageResult ExecuteEnrollStage()
+        public EnrollStageResult EnrollFingerprint()
         {
-            return ExecuteEnrollStage(null);
+            return EnrollFingerprint(null);
         }
 
-        public EnrollStageResult ExecuteEnrollStage(string pgmFilePath)
+        public bool VerifyFingerprint(string pgmFilePath)
+        {
+            // TODO: Implement.
+            return false;
+        }
+
+        public EnrollStageResult EnrollFingerprint(string pgmFilePath)
         {
             // Make sure the device is open
             if (IsOpen == false)
@@ -136,105 +144,6 @@ namespace Unosquare.Labs.LibFprint
 
             return null;
 
-        }
-
-        // TODO: This needs quite a bit of work...
-        public EnrollResult Enroll()
-        {
-            if (IsOpen == false)
-                this.Open();
-
-            var printDataPtr = IntPtr.Zero;
-
-            int enrollResult = 0;
-            var printImagePtr = IntPtr.Zero;
-
-            while (true)
-            {
-                Console.WriteLine("Press your finger to enroll it");
-                
-                enrollResult = Interop.fp_enroll_finger_img(this.RealDevicePtr, out printDataPtr, out printImagePtr);
-
-                if (printImagePtr != IntPtr.Zero)
-                {
-                    Interop.fp_img_save_to_file(printImagePtr, "last_enrolled.pgm");
-                    Interop.fp_img_free(printImagePtr);
-
-                    using (var bitmap = PgmFormatReader.Read("last_enrolled.pgm"))
-                    {
-                        bitmap.Save("last_enrolled.png", System.Drawing.Imaging.ImageFormat.Png);
-                    }
-
-                    Console.WriteLine("Image saved :)");
-                }
-
-                Console.WriteLine("Enroll Result = " + enrollResult);
-
-                if (enrollResult == (int)Interop.fp_enroll_result.FP_ENROLL_COMPLETE)
-                    break;
-                else
-                    this.Reset();
-            }
-
-            // We now have access to the Print Data structure
-            var printData = printDataPtr.DereferencePtr<Interop.fp_print_data>();
-            Console.WriteLine("We have new print data! Type: {0}, Driver: {1}", printData.type, printData.driver_id);
-
-            // We will now need to convert print data to a standard, raw buffer.
-            var bufferPtr = IntPtr.Zero;
-            var bufferLength = System.Convert.ToInt32(Interop.fp_print_data_get_data(printDataPtr, out bufferPtr));
-            var bufferDataArray = new byte[System.Convert.ToInt32(bufferLength)];
-            System.Runtime.InteropServices.Marshal.Copy(bufferPtr, bufferDataArray, 0, bufferDataArray.Length);
-            var firstCharCount = 3;
-            var firstChars = new byte[firstCharCount];
-            for (var i = 0; i < firstCharCount; i++)
-            {
-                firstChars[i] = bufferDataArray[i];
-            }
-
-            Console.WriteLine("The standard data buffer has {0} bytes and Reads as follows: {1} (...) ", bufferDataArray.Length, System.Text.Encoding.ASCII.GetString(firstChars));
-            System.IO.File.WriteAllBytes("sample.print", bufferDataArray);
-            Console.WriteLine("Raw print data was saved");
-
-            // Now let's test how loading of the raw data bufer works
-            var printDataFromBufferPtr = Interop.fp_print_data_from_data(bufferDataArray, System.Convert.ToUInt32(bufferDataArray.Length));
-            var printDataFromBuffer = printDataFromBufferPtr.DereferencePtr<Interop.fp_print_data>();
-            Console.WriteLine("We have print data from Buffer -- Type: {0}, Driver: {1}", printDataFromBuffer.type, printDataFromBuffer.driver_id);
-
-            // We are the muscal genius of this generation at this point
-            // Now, let's create gallery with a print and try to identify it (not very challenging, or is it???)
-            // The documentation says print gallery is:
-            //     NULL-terminated array of pointers to the prints to identify against. 
-            //     Each one must have been previously enrolled with a device compatible to the device selected to perform the scan
-
-            var printGalleryPtrList = new System.Collections.Generic.List<IntPtr>();
-            printGalleryPtrList.Add(printDataFromBufferPtr);
-            var printGalleryArray = printGalleryPtrList.ToArray();
-
-            Console.WriteLine("Place your finger on the scanner again.");
-            uint matchOffset = 9999;
-            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, printGalleryArray, out matchOffset, out printImagePtr);
-
-            if (matchResult >= 0)
-            {
-                Console.WriteLine("Verify result: " + ((Interop.fp_verify_result)matchResult).ToString());
-                Console.WriteLine("Match offset resulted in: " + matchOffset);
-            }
-
-            // -- We need the free method to clear the bufferPtr allocated by the lib previously...
-            Interop.fp_print_data_free(printDataPtr);
-
-            foreach (var galleryPrintPtr in printGalleryPtrList)
-            {
-                if (galleryPrintPtr == IntPtr.Zero)
-                    continue;
-                else
-                    System.Runtime.InteropServices.Marshal.FreeHGlobal(galleryPrintPtr);
-            }
-
-
-            var finalResult = (EnrollResult)enrollResult;
-            return finalResult;
         }
 
         public bool IsOpen { get { return RealDevice.HasValue; } }
