@@ -51,12 +51,16 @@ namespace Unosquare.Labs.LibFprint.Tests
                             if (identified == null)
                             {
                                 Console.WriteLine("Could not identify.");
-                                break;
                             }
                             else
                             {
-                                Console.WriteLine("Identified: {0}", identified);
+                                Console.WriteLine("Identified: {0}.", identified);
                             }
+
+                            Console.WriteLine("Pres Q to quit. Any other key to try again.");
+                            var consoleKey = Console.ReadKey(true);
+                            if (consoleKey.Key == ConsoleKey.Q)
+                                break;
                         }
 
 
