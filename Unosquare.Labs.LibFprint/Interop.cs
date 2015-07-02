@@ -269,7 +269,7 @@ namespace Unosquare.Labs.LibFprint
         ///match_offset: size_t*
         ///img: fp_img**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_identify_finger_img")]
-        public static extern int fp_identify_finger_img(ref fp_dev dev, ref System.IntPtr print_gallery, ref uint match_offset, ref System.IntPtr img);
+        public static extern int fp_identify_finger_img(IntPtr dev, IntPtr[] print_gallery, ref uint match_offset, System.IntPtr img);
 
 
         /// Return Type: int
@@ -277,7 +277,7 @@ namespace Unosquare.Labs.LibFprint
         ///print_gallery: fp_print_data**
         ///match_offset: size_t*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_identify_finger")]
-        public static extern int fp_identify_finger(ref fp_dev dev, ref System.IntPtr print_gallery, ref uint match_offset);
+        public static extern int fp_identify_finger(IntPtr dev, ref fp_print_data[] print_gallery, ref uint match_offset);
 
 
         /// Return Type: int
@@ -312,7 +312,7 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: void
         ///data: fp_print_data*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_free")]
-        public static extern void fp_print_data_free(ref fp_print_data data);
+        public static extern void fp_print_data_free(IntPtr data);
 
 
         /// Return Type: size_t->unsigned int
@@ -320,14 +320,16 @@ namespace Unosquare.Labs.LibFprint
         ///ret: unsigned char**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_get_data")]
         [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)]
-        public static extern uint fp_print_data_get_data(ref fp_print_data data, out System.IntPtr ret);
+        public static extern uint fp_print_data_get_data(IntPtr data, out System.IntPtr ret);
 
 
         /// Return Type: fp_print_data*
         ///buf: unsigned char*
         ///buflen: size_t->unsigned int
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_from_data")]
-        public static extern System.IntPtr fp_print_data_from_data(System.IntPtr buf, [System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)] uint buflen);
+        public static extern System.IntPtr fp_print_data_from_data(
+              byte[] buf
+            ,[System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)] uint buflen);
 
 
         /// Return Type: uint16_t->unsigned short

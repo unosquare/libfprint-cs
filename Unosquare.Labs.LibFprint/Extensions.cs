@@ -21,7 +21,7 @@ namespace Unosquare.Labs.LibFprint
         {
             var ptrList = new System.Collections.Generic.List<IntPtr>();
 
-            var arrayPtr = baseAddress;
+            //var arrayPtr = baseAddress;
             if (baseAddress == IntPtr.Zero) return ptrList.ToArray();
 
             while (true)
