@@ -51,7 +51,8 @@ namespace Unosquare.Labs.LibFprint.Tests
                             }
                             else
                             {
-                                Console.WriteLine("Try Again -- Error Code {0}", enrollResult.ResultCode);
+                                Console.WriteLine("Try Again -- Error Code {0} - {1}", enrollResult.ResultCode, enrollResult.Result);
+                                device.Reset();
                             }
                         }
 
