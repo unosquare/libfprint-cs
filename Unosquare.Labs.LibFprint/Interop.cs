@@ -269,7 +269,7 @@ namespace Unosquare.Labs.LibFprint
         ///match_offset: size_t*
         ///img: fp_img**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_identify_finger_img")]
-        public static extern int fp_identify_finger_img(IntPtr dev, IntPtr[] print_gallery, ref uint match_offset, System.IntPtr img);
+        public static extern int fp_identify_finger_img(IntPtr dev, IntPtr[] print_gallery, out uint match_offset, out System.IntPtr img);
 
 
         /// Return Type: int

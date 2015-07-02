@@ -87,7 +87,7 @@ namespace Unosquare.Labs.LibFprint
                     fingerprintData = new byte[bufferLength];
                     Marshal.Copy(bufferPtr, fingerprintData, 0, fingerprintData.Length);
                     Interop.fp_print_data_free(printDataPtr);
-                    // TODO: free(bufferPtr) // Maybe Marshal.FreeHGlobal?
+                    // TODO: free(bufferPtr) // Maybe Marshal.FreeHGlobal as done in the following line?
                     Marshal.FreeHGlobal(bufferPtr);
                 }
             }
@@ -96,15 +96,25 @@ namespace Unosquare.Labs.LibFprint
         }
 
 
-        public string IdentifyFingerprint(FingerprintGallery gallery)
+        public string IdentifyFingerprint(FingerprintGallery gallery, string pgmFilePath)
         {
             // Make sure the device is open
             if (IsOpen == false)
                 this.Open();
 
             uint matchOffset = 0;
-            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, gallery.PointerArray, ref matchOffset, IntPtr.Zero);
+            var printImagePtr = IntPtr.Zero;
 
+            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, gallery.PointerArray, out matchOffset, out printImagePtr);
+
+            // Save the PGM file if required by the user
+            if (string.IsNullOrWhiteSpace(pgmFilePath) == false && printImagePtr != IntPtr.Zero)
+            {
+                Interop.fp_img_save_to_file(printImagePtr, pgmFilePath);
+                Interop.fp_img_free(printImagePtr);
+            }
+
+            // Return the key string based on the offset
             if (matchResult == 1)
             {
                 return gallery[Convert.ToInt32(matchOffset)];
