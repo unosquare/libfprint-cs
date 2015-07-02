@@ -8,14 +8,6 @@ namespace Unosquare.Labs.LibFprint.Tests
     {
         public static void Main(string[] args)
         {
-
-            ThreadPool.QueueUserWorkItem(new WaitCallback((arg) => { }));
-
-
-
-
-
-
             // The device manager discovers devices. It's a singleton and is used to detect connected devices
             // it also create references to the fingerprint scanners
             using (var manager = FingerprintDeviceManager.Instance)
