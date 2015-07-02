@@ -74,6 +74,11 @@ namespace Unosquare.Labs.LibFprint
             if (string.IsNullOrWhiteSpace(pgmFilePath) == false && printImagePtr != IntPtr.Zero)
             {
                 Interop.fp_img_save_to_file(printImagePtr, pgmFilePath);
+            }
+
+            // Free the image pointer immediately
+            if (printImagePtr != IntPtr.Zero)
+            {
                 Interop.fp_img_free(printImagePtr);
             }
 
@@ -95,6 +100,10 @@ namespace Unosquare.Labs.LibFprint
             return new EnrollStageResult(enrollResultCode, fingerprintData);
         }
 
+        public string IdentifyFingerprint(FingerprintGallery gallery)
+        {
+            return IdentifyFingerprint(gallery, null);
+        }
 
         public string IdentifyFingerprint(FingerprintGallery gallery, string pgmFilePath)
         {
@@ -111,6 +120,11 @@ namespace Unosquare.Labs.LibFprint
             if (string.IsNullOrWhiteSpace(pgmFilePath) == false && printImagePtr != IntPtr.Zero)
             {
                 Interop.fp_img_save_to_file(printImagePtr, pgmFilePath);
+            }
+
+            // Free the image pointer immediately
+            if (printImagePtr != IntPtr.Zero)
+            {
                 Interop.fp_img_free(printImagePtr);
             }
 
@@ -133,11 +147,12 @@ namespace Unosquare.Labs.LibFprint
             var printDataPtr = IntPtr.Zero;
 
             int enrollResult = 0;
+            var printImagePtr = IntPtr.Zero;
 
             while (true)
             {
                 Console.WriteLine("Press your finger to enroll it");
-                var printImagePtr = IntPtr.Zero;
+                
                 enrollResult = Interop.fp_enroll_finger_img(this.RealDevicePtr, out printDataPtr, out printImagePtr);
 
                 if (printImagePtr != IntPtr.Zero)
@@ -198,7 +213,7 @@ namespace Unosquare.Labs.LibFprint
 
             Console.WriteLine("Place your finger on the scanner again.");
             uint matchOffset = 9999;
-            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, printGalleryArray, ref matchOffset, IntPtr.Zero);
+            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, printGalleryArray, out matchOffset, out printImagePtr);
 
             if (matchResult >= 0)
             {
