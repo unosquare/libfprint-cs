@@ -71,4 +71,10 @@ You will also obviously want to install mono for any of the above to work . . .
 sudo apt-get install mono-complete
 ```
 
+## Futures
+
+The identification logic seems to be fairly slow when we start adding many fingerprints. Maybe using thislibrary for imaging and then using something like <a target="_blank" href="http://www.sourceafis.org/blog/">SourceAFIS</a> for identification would work better...
+
+## Thanks
+
 Thanks to the libfprint developers!
