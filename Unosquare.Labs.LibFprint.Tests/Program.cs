@@ -44,7 +44,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                             while (enrollCount < 5)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(" >> Enroll count: {0}. Enroll a new finger now . . .", enrollCount);
+                                Console.WriteLine(" >> ENROLL: Enroll count: {0}. Enroll a new finger now . . .", enrollCount);
 
                                 // Call the enrollment method
                                 var enrollResult = device.EnrollFingerprint("enroll.pgm");
@@ -52,7 +52,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                                 {
 
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine(" >> Now, verify your scan just to make sure . . .");
+                                    Console.WriteLine(" >> VERIFY: Now, verify your scan just to make sure . . .");
 
                                     // Although not necessary, we are adding verification just to make sure
                                     var isVerified = device.VerifyFingerprint(enrollResult, "verify.pgm");
@@ -66,23 +66,28 @@ namespace Unosquare.Labs.LibFprint.Tests
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Could not verify. Try again!");
+                                        Console.WriteLine();
                                     }
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Try Again -- Error Code {0} - {1}", enrollResult.ResultCode, enrollResult.Result);
+                                    Console.WriteLine();
                                     // HACK: for some reason we needed the Reset method to be called. Otherwise the reader would blink rapidly and get stuck
                                     device.Reset();
                                 }
                             }
+
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine();
 
                             // Now, let's try some identification in the gallery we created earlier
                             // with enrollment and verification operations
                             while (true)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(" >> Press finger against scanner to identify . . .");
+                                Console.WriteLine(" >> IDENTIFY: Press finger against scanner to identify . . .");
 
                                 // Let's try to identify a fingerprint and getting it's key back.
                                 // a null key means the FP was not identified.
@@ -91,11 +96,13 @@ namespace Unosquare.Labs.LibFprint.Tests
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Could not identify.");
+                                    Console.WriteLine();
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Blue;
                                     Console.WriteLine("Fingerprint was identified: {0}.", identified);
+                                    Console.WriteLine();
                                 }
                             }
 
@@ -103,14 +110,42 @@ namespace Unosquare.Labs.LibFprint.Tests
 
                     }) { IsBackground = true };
 
-                    thread.Start();
+                    
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Press A to abort the thread . . .");
-                    if (Console.ReadKey(true).Key == ConsoleKey.A)
+                    
+                    thread.Start();
+
+                    while (true)
                     {
-                        thread.Abort();
-                        device.Reset();
+                        if (Console.ReadKey(true).Key == ConsoleKey.A)
+                        {
+                            thread.Abort();
+                            var terminationTimeout = DateTime.Now.AddSeconds(10);
+                            while (thread.IsAlive)
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Waiting for thread termination. {0.00} seconds to terminate forcefully.", terminationTimeout.Subtract(DateTime.Now).TotalSeconds);
+                                thread.Abort();
+
+                                if (DateTime.Now > terminationTimeout)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Termination timeout reached. Forcefully disposing the device.");
+                                }
+
+                                Thread.Sleep(1000);
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Press A to abort the thread . . .");
+                        }
                     }
+
 
                     // We realease unmanaged resources for the device.
                     device.Dispose();
