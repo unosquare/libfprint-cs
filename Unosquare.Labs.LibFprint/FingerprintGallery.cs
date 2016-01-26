@@ -55,7 +55,7 @@
             if (FingerprintDeviceManager.Instance.IsInitialized == false)
                 FingerprintDeviceManager.Instance.Initialize();
 
-            this.PointerArray = new IntPtr[0];
+            RebuildPointerArray();
         }
 
         /// <summary>
@@ -64,7 +64,10 @@
         /// </summary>
         private void RebuildPointerArray()
         {
-            this.PointerArray = InternalList.Select(s => s.Reference).ToArray();
+            this.PointerArray = new IntPtr[InternalList.Count+1];
+            for (var i = 0; i < InternalList.Count; i++)
+                this.PointerArray[i] = InternalList[i].Reference;
+            this.PointerArray[InternalList.Count] = IntPtr.Zero;
         }
 
         /// <summary>
@@ -243,7 +246,8 @@
             // free native resources if there are any.
             foreach (var fingerprintPtr in PointerArray)
             {
-                Interop.fp_print_data_free(fingerprintPtr);
+                if (fingerprintPtr != IntPtr.Zero)
+                    Interop.fp_print_data_free(fingerprintPtr);
             }
         }
 
