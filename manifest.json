@@ -1,1 +1,179 @@
-{"homepages":[],"source_base_path":"C:/projects/libfprint-cs","xrefmap":"xrefmap.yml","files":[{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.PgmFormatReader.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.PgmFormatReader.html","hash":"FXfxg01PGAX16f24qH6Fgw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.EnrollResult.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.EnrollResult.html","hash":"ePazvdivOC/hRri2eSJzKQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.FingerprintDevice.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.FingerprintDevice.html","hash":"mqqd7LNiOXOEzedN52KpDQ=="}},"is_incremental":false,"version":""},{"type":"Toc","source_relative_path":"obj/api/toc.yml","output":{".html":{"relative_path":"api/toc.html","hash":"4uHBho3cYCXVkiZ5iXIj1w=="}},"is_incremental":false,"version":""},{"type":"Toc","source_relative_path":"toc.yml","output":{".html":{"relative_path":"toc.html","hash":"ZOS6wrIonUnL5rh/qVkTBg=="}},"is_incremental":false,"version":""},{"type":"Conceptual","source_relative_path":"README.md","output":{".html":{"relative_path":"README.html","hash":"TzH36TO0IXaY+lw66XUxTw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.EnrollStageResult.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.EnrollStageResult.html","hash":"LoC9j6ea3O9EsC9ktEJoww=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html","hash":"upqp7nqNi1a9a1IvYxfT0w=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.FingerprintGallery.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.FingerprintGallery.html","hash":"L908h0aN4DD3xQRmsY2uUg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.Labs.LibFprint.yml","output":{".html":{"relative_path":"api/Unosquare.Labs.LibFprint.html","hash":"SpEXWioJiXAq+cEYTmBi2Q=="}},"is_incremental":false,"version":""},{"type":"Resource","output":{"resource":{"relative_path":"index.json"}},"is_incremental":false}],"version_info":{}}
+{
+  "homepages": [],
+  "source_base_path": "C:/projects/libfprint-cs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "WYr+KnRwOgzxMKgX5XCDTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.EnrollResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.EnrollResult.html",
+          "hash": "uQ4JsjkW2HU9CGs2YWtN3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.EnrollStageResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.EnrollStageResult.html",
+          "hash": "X/UJCcHD9iRXYcwnAMf8hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.FingerprintDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDevice.html",
+          "hash": "Jo88S7VkXO/nblAE9hXGXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html",
+          "hash": "0QT9gedNCZBGWCLNSmAs/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.FingerprintGallery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintGallery.html",
+          "hash": "g7lgoGMzFoQEYqkxKDe7Vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.PgmFormatReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.PgmFormatReader.html",
+          "hash": "H7Ntpgcfo5+xw//8pJCdTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LibFprint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LibFprint.html",
+          "hash": "TpHANs1fHsncxM9Ah3ng3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "oFtlkCzKouHrpHdipJufCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Px95E78/xzTHP+x6MBf2uA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "RestApiDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {}
+}
