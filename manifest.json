@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "WYr+KnRwOgzxMKgX5XCDTA=="
+          "hash": "DOMjFseJnFnJeew5ecfApQ=="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollResult.html",
-          "hash": "uQ4JsjkW2HU9CGs2YWtN3A=="
+          "hash": "2oQQ6rHOxpgv6l2HUip9aQ=="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollStageResult.html",
-          "hash": "X/UJCcHD9iRXYcwnAMf8hw=="
+          "hash": "rV3UmrDE8zEmG3bIENH4oQ=="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDevice.html",
-          "hash": "Jo88S7VkXO/nblAE9hXGXA=="
+          "hash": "7UOxkslVlHP12XS0LjDFSw=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html",
-          "hash": "0QT9gedNCZBGWCLNSmAs/w=="
+          "hash": "1pVAmu0G35XSSVOumUA8nA=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintGallery.html",
-          "hash": "g7lgoGMzFoQEYqkxKDe7Vw=="
+          "hash": "SagtzdOsVcbH6OBjmHE1KQ=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.PgmFormatReader.html",
-          "hash": "H7Ntpgcfo5+xw//8pJCdTA=="
+          "hash": "x99LTXkd4fN+14HOUbhwNA=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.html",
-          "hash": "TpHANs1fHsncxM9Ah3ng3A=="
+          "hash": "RzzTIr7a08hcrbN9AGZBhA=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oFtlkCzKouHrpHdipJufCg=="
+          "hash": "GVLHYmKgurFftwQNk8JCnQ=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "Px95E78/xzTHP+x6MBf2uA=="
+          "hash": "lcEkluaPjsg4WfcsgCEzrw=="
         }
       },
       "is_incremental": false,
@@ -141,27 +141,27 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "RestApiDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "RestApiDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build"
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
@@ -175,5 +175,10 @@
       "processors": {}
     }
   ],
-  "version_info": {}
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
 }
