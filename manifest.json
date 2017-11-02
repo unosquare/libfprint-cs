@@ -18,7 +18,40 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "DOMjFseJnFnJeew5ecfApQ=="
+          "hash": "dJ14mF2EDtaFbB2707uN1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "best-practices/resources/images/doc_logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "best-practices/resources/images/doc_logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "best-practices/resources/images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "best-practices/resources/images/logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "best-practices/resources/images/transparent.gif",
+      "output": {
+        "resource": {
+          "relative_path": "best-practices/resources/images/transparent.gif"
         }
       },
       "is_incremental": false,
@@ -30,7 +63,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollResult.html",
-          "hash": "2oQQ6rHOxpgv6l2HUip9aQ=="
+          "hash": "g3U0OwEXK96yDz4Mg3Qd0w=="
         }
       },
       "is_incremental": false,
@@ -42,7 +75,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollStageResult.html",
-          "hash": "rV3UmrDE8zEmG3bIENH4oQ=="
+          "hash": "rIJG5+OAnUK/iRbUqwLM8Q=="
         }
       },
       "is_incremental": false,
@@ -54,7 +87,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDevice.html",
-          "hash": "7UOxkslVlHP12XS0LjDFSw=="
+          "hash": "isQ1s/hzWxLfOw/9W/5uMA=="
         }
       },
       "is_incremental": false,
@@ -66,7 +99,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html",
-          "hash": "1pVAmu0G35XSSVOumUA8nA=="
+          "hash": "bcsG7NMjjxC9kQ1KV7Ru5w=="
         }
       },
       "is_incremental": false,
@@ -78,7 +111,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintGallery.html",
-          "hash": "SagtzdOsVcbH6OBjmHE1KQ=="
+          "hash": "80KyslVm1ozrl8wJRYlYRQ=="
         }
       },
       "is_incremental": false,
@@ -90,7 +123,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.PgmFormatReader.html",
-          "hash": "x99LTXkd4fN+14HOUbhwNA=="
+          "hash": "GdzpEB/fpS0V0rXt0mmxrg=="
         }
       },
       "is_incremental": false,
@@ -102,7 +135,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.html",
-          "hash": "RzzTIr7a08hcrbN9AGZBhA=="
+          "hash": "vF6JR24E42QZO/3e6ZLYwQ=="
         }
       },
       "is_incremental": false,
@@ -114,7 +147,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "GVLHYmKgurFftwQNk8JCnQ=="
+          "hash": "7mvz8g5VrBwTmOIQWa9XJw=="
         }
       },
       "is_incremental": false,
@@ -126,7 +159,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "lcEkluaPjsg4WfcsgCEzrw=="
+          "hash": "ftgOxZ5d0cNxn70710GFSA=="
         }
       },
       "is_incremental": false,
@@ -136,17 +169,21 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build"
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build"
         },
         "RestApiDocumentProcessor": {
@@ -157,11 +194,6 @@
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
