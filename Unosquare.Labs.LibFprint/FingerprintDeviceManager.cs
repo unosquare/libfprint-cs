@@ -15,7 +15,7 @@
         /// <summary>
         /// The static, singleton instance reference.
         /// </summary>
-        private static FingerprintDeviceManager m_Instance = null;
+        private static FingerprintDeviceManager m_Instance;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="FingerprintDeviceManager"/> class from being created.
@@ -31,20 +31,7 @@
         /// <value>
         /// The instance.
         /// </value>
-        public static FingerprintDeviceManager Instance
-        {
-            get
-            {
-                if (m_Instance == null)
-                    m_Instance = new FingerprintDeviceManager();
-
-                return m_Instance;
-            }
-            private set
-            {
-                m_Instance = value;
-            }
-        }
+        public static FingerprintDeviceManager Instance => m_Instance ?? (m_Instance = new FingerprintDeviceManager());
 
         #endregion
 
@@ -78,25 +65,17 @@
         /// </summary>
         /// <param name="debugLevel">The debug level.</param>
         /// <exception cref="System.Exception"></exception>
-        public void Initialize(int debugLevel)
+        public void Initialize(int debugLevel = 0)
         {
             if (IsInitialized) return;
 
             var result = Interop.fp_init();
             if (result < 0)
-                throw new Exception(string.Format("Failed to initialize fprint library. Result code: {0}", result));
+                throw new InvalidOperationException($"Failed to initialize fprint library. Result code: {result}");
 
             Interop.fp_set_debug(debugLevel);
 
-            this.IsInitialized = true;
-        }
-
-        /// <summary>
-        /// Initializes the fprint library with Debug Level 0.
-        /// </summary>
-        public void Initialize()
-        {
-            this.Initialize(0);
+            IsInitialized = true;
         }
 
         /// <summary>
@@ -106,24 +85,25 @@
         /// <returns></returns>
         public FingerprintDevice[] DiscoverDevices()
         {
-            if (!IsInitialized) this.Initialize();
+            if (!IsInitialized) Initialize();
 
             var result = new List<FingerprintDevice>();
 
-            this.ReleaseDeviceDiscoveryResults();
-            var deviceDiscoveryResultsPtr = IntPtr.Zero; // This will point to an array of pointers
-            var dicoveredDevicePtrs = Interop.fp_discover_devs_pointers(out deviceDiscoveryResultsPtr); // This returns the array of pointrs
-            this.DeviceDicoveryResultsPtr = deviceDiscoveryResultsPtr;
+            ReleaseDeviceDiscoveryResults();
+            var dicoveredDevicePtrs = Interop.fp_discover_devs_pointers(out var deviceDiscoveryResultsPtr); // This returns the array of pointrs
+            DeviceDicoveryResultsPtr = deviceDiscoveryResultsPtr;
 
             foreach (var devicePtr in dicoveredDevicePtrs)
             {
                 var deviceStruct = devicePtr.DereferencePtr<Interop.fp_dscv_dev>();
                 var driverStruct = Interop.fp_dscv_dev_get_driver_struct(ref deviceStruct);
 
-                var managedDevice = new FingerprintDevice();
-                managedDevice.DiscoveredDevice = deviceStruct;
-                managedDevice.DiscoveredDevicePtr = devicePtr;
-                managedDevice.Driver = driverStruct;
+                var managedDevice = new FingerprintDevice
+                {
+                    DiscoveredDevice = deviceStruct,
+                    DiscoveredDevicePtr = devicePtr,
+                    Driver = driverStruct
+                };
 
                 result.Add(managedDevice);
             }
@@ -150,9 +130,7 @@
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

@@ -12,14 +12,11 @@
         /// <param name="fingerprintData">The fingerprint data.</param>
         public EnrollStageResult(int enrollCode, byte[] fingerprintData)
         {
-            this.ResultCode = enrollCode;
-            
-            if (this.ResultCode < 0)
-                this.Result = EnrollResult.Unspecified;
-            else
-                this.Result = (EnrollResult)enrollCode;
+            ResultCode = enrollCode;
 
-            this.FingerprintData = fingerprintData;
+            Result = ResultCode < 0 ? EnrollResult.Unspecified : (EnrollResult) enrollCode;
+
+            FingerprintData = fingerprintData;
         }
 
         /// <summary>
@@ -74,42 +71,38 @@
         /// <value>
         /// <c>true</c> if this instance is fatal error; otherwise, <c>false</c>.
         /// </value>
-        public bool IsFatalError { get { return ResultCode < 0; } }
-        
+        public bool IsFatalError => ResultCode < 0;
+
         /// <summary>
         /// Gets a value indicating whether the result was a successful scan.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is success; otherwise, <c>false</c>.
         /// </value>
-        public bool IsSuccess { get { return IsFatalError == false && (Result == EnrollResult.EnrollComplete || Result == EnrollResult.EnrollStagePassed); } }
-        
+        public bool IsSuccess => IsFatalError == false && (Result == EnrollResult.EnrollComplete || Result == EnrollResult.EnrollStagePassed);
+
         /// <summary>
         /// Gets a value indicating whether this instance represents an enrollment failure.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is enroll failure; otherwise, <c>false</c>.
         /// </value>
-        public bool IsEnrollFailure { get { return IsFatalError == false && Result == EnrollResult.EnrollFailed; } }
-        
+        public bool IsEnrollFailure => IsFatalError == false && Result == EnrollResult.EnrollFailed;
+
         /// <summary>
         /// Gets a value indicating whether this instance represents an enrollment completion.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is enroll complete; otherwise, <c>false</c>.
         /// </value>
-        public bool IsEnrollComplete { get { return IsFatalError == false && Result == EnrollResult.EnrollComplete; } }
-        
+        public bool IsEnrollComplete => IsFatalError == false && Result == EnrollResult.EnrollComplete;
+
         /// <summary>
         /// Gets a value indicating whether a new call to the Enroll Fingerprint method is required to advance or to retry.
         /// </summary>
         /// <value>
         ///   <c>true</c> if [requires new call]; otherwise, <c>false</c>.
         /// </value>
-        public bool RequiresNewCall
-        {
-            get { return RequiresRetry || Result == EnrollResult.EnrollStagePassed; }
-        }
-
+        public bool RequiresNewCall => RequiresRetry || Result == EnrollResult.EnrollStagePassed;
     }
 }

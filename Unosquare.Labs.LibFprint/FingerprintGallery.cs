@@ -50,7 +50,6 @@
         /// Initializes a new instance of the <see cref="FingerprintGallery"/> class.
         /// </summary>
         public FingerprintGallery()
-            : base()
         {
             if (FingerprintDeviceManager.Instance.IsInitialized == false)
                 FingerprintDeviceManager.Instance.Initialize();
@@ -64,10 +63,10 @@
         /// </summary>
         private void RebuildPointerArray()
         {
-            this.PointerArray = new IntPtr[InternalList.Count+1];
+            PointerArray = new IntPtr[InternalList.Count+1];
             for (var i = 0; i < InternalList.Count; i++)
-                this.PointerArray[i] = InternalList[i].Reference;
-            this.PointerArray[InternalList.Count] = IntPtr.Zero;
+                PointerArray[i] = InternalList[i].Reference;
+            PointerArray[InternalList.Count] = IntPtr.Zero;
         }
 
         /// <summary>
@@ -89,13 +88,13 @@
             if (string.IsNullOrWhiteSpace(key))
                 throw new ArgumentException("key needs to contain a valid string");
 
-            var bufferLength = System.Convert.ToUInt32(fingerprintData.Length);
+            var bufferLength = Convert.ToUInt32(fingerprintData.Length);
             var printDataFromBufferPtr = Interop.fp_print_data_from_data(fingerprintData, bufferLength);
             if (printDataFromBufferPtr == IntPtr.Zero)
                 throw new FormatException("The fingerprint data buffer is invalid.");
 
-            if (this.HasKey(key))
-                this.Remove(key, false);
+            if (HasKey(key))
+                Remove(key, false);
 
             InternalList.Add(new Fingerprint() { Identifier = key, Reference = printDataFromBufferPtr });
         }
@@ -107,7 +106,7 @@
         /// <param name="fingerprintData">The fingerprint data.</param>
         public void Add(string key, byte[] fingerprintData)
         {
-            this.RegisterFingerprintData(key, fingerprintData);
+            RegisterFingerprintData(key, fingerprintData);
             RebuildPointerArray();
         }
 
@@ -118,7 +117,7 @@
         /// <param name="enrollResult">The enroll result.</param>
         public void Add(string key, EnrollStageResult enrollResult)
         {
-            this.Add(key, enrollResult.FingerprintData);
+            Add(key, enrollResult.FingerprintData);
         }
 
         /// <summary>
@@ -145,41 +144,26 @@
         /// </value>
         /// <param name="offset">The offset.</param>
         /// <returns></returns>
-        public string this[int offset]
-        {
-            get
-            {
-                return this.InternalList[offset].Identifier;
-            }
-        }
+        public string this[int offset] => InternalList[offset].Identifier;
 
         /// <summary>
         /// Determines whether the gallery contains the specified keys.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public bool HasKey(string key)
-        {
-            return this.AllKeys().Contains(key);
-        }
+        public bool HasKey(string key) => AllKeys().Contains(key);
 
         /// <summary>
         /// Gets all the keys registered in this gallery.
         /// </summary>
         /// <returns></returns>
-        public string[] AllKeys()
-        {
-            return this.InternalList.Select(s => s.Identifier).ToArray();
-        }
+        public string[] AllKeys() => InternalList.Select(s => s.Identifier).ToArray();
 
         /// <summary>
         /// Removes a fingerprint from the gallery given its key
         /// </summary>
         /// <param name="key">The key.</param>
-        public void Remove(string key)
-        {
-            this.Remove(key, true);
-        }
+        public void Remove(string key) => Remove(key, true);
 
         /// <summary>
         /// Removes a fingerprint from the gallery given its key
@@ -207,19 +191,14 @@
         /// <returns></returns>
         internal IntPtr GetFingerprintPointer(string key)
         {
-            if (this.HasKey(key))
-                return InternalList.Where(f => f.Identifier.Equals(key)).FirstOrDefault().Reference;
-
-            return IntPtr.Zero;
+            return HasKey(key) ? InternalList.FirstOrDefault(f => f.Identifier.Equals(key)).Reference : IntPtr.Zero;
         }
 
         #endregion
 
         #region IDisposable Implementation
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

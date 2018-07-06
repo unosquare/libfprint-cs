@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Unosquare.Labs.LibFprint
 {
@@ -12,10 +9,10 @@ namespace Unosquare.Labs.LibFprint
         {
 
             /// gpointer->void*
-            public System.IntPtr data;
+            public IntPtr data;
 
             /// GSList*
-            public System.IntPtr next;
+            public IntPtr next;
         }
 
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -141,10 +138,10 @@ namespace Unosquare.Labs.LibFprint
         {
 
             /// libusb_device*
-            public System.IntPtr udev;
+            public IntPtr udev;
 
             /// fp_driver*
-            public System.IntPtr drv;
+            public IntPtr drv;
 
             /// unsigned int
             public uint driver_data;
@@ -176,22 +173,22 @@ namespace Unosquare.Labs.LibFprint
         {
 
             /// fp_driver*
-            public System.IntPtr drv;
+            public IntPtr drv;
 
             /// libusb_device_handle*
-            public System.IntPtr udev;
+            public IntPtr udev;
 
             /// uint32_t->unsigned int
             public uint devtype;
 
             /// void*
-            public System.IntPtr priv;
+            public IntPtr priv;
 
             /// int
             public int nr_enroll_stages;
 
             /// fp_print_data*
-            public System.IntPtr verify_data;
+            public IntPtr verify_data;
 
             /// fp_dev_state
             public fp_dev_state state;
@@ -206,64 +203,64 @@ namespace Unosquare.Labs.LibFprint
             public fp_dev_open_cb open_cb;
 
             /// void*
-            public System.IntPtr open_cb_data;
+            public IntPtr open_cb_data;
 
             /// fp_dev_close_cb
             public fp_dev_close_cb close_cb;
 
             /// void*
-            public System.IntPtr close_cb_data;
+            public IntPtr close_cb_data;
 
             /// fp_enroll_stage_cb
             public fp_enroll_stage_cb enroll_stage_cb;
 
             /// void*
-            public System.IntPtr enroll_stage_cb_data;
+            public IntPtr enroll_stage_cb_data;
 
             /// fp_enroll_stop_cb
             public fp_enroll_stop_cb enroll_stop_cb;
 
             /// void*
-            public System.IntPtr enroll_stop_cb_data;
+            public IntPtr enroll_stop_cb_data;
 
             /// fp_verify_cb
             public fp_verify_cb verify_cb;
 
             /// void*
-            public System.IntPtr verify_cb_data;
+            public IntPtr verify_cb_data;
 
             /// fp_verify_stop_cb
             public fp_verify_stop_cb verify_stop_cb;
 
             /// void*
-            public System.IntPtr verify_stop_cb_data;
+            public IntPtr verify_stop_cb_data;
 
             /// fp_identify_cb
             public fp_identify_cb identify_cb;
 
             /// void*
-            public System.IntPtr identify_cb_data;
+            public IntPtr identify_cb_data;
 
             /// fp_identify_stop_cb
             public fp_identify_stop_cb identify_stop_cb;
 
             /// void*
-            public System.IntPtr identify_stop_cb_data;
+            public IntPtr identify_stop_cb_data;
 
             /// fp_capture_cb
             public fp_capture_cb capture_cb;
 
             /// void*
-            public System.IntPtr capture_cb_data;
+            public IntPtr capture_cb_data;
 
             /// fp_capture_stop_cb
             public fp_capture_stop_cb capture_stop_cb;
 
             /// void*
-            public System.IntPtr capture_stop_cb_data;
+            public IntPtr capture_stop_cb_data;
 
             /// fp_print_data**
-            public System.IntPtr identify_gallery;
+            public IntPtr identify_gallery;
         }
 
         /// Return Type: int
@@ -330,7 +327,7 @@ namespace Unosquare.Labs.LibFprint
             public string full_name;
 
             /// usb_id*
-            public System.IntPtr id_table;
+            public IntPtr id_table;
 
             /// fp_driver_type
             public fp_driver_type type;
@@ -339,7 +336,7 @@ namespace Unosquare.Labs.LibFprint
             public fp_scan_type scan_type;
 
             /// void*
-            public System.IntPtr priv;
+            public IntPtr priv;
 
             /// fp_driver_discover
             public fp_driver_discover AnonymousMember1;
@@ -389,7 +386,7 @@ namespace Unosquare.Labs.LibFprint
             public fp_print_data_type type;
 
             /// GSList*
-            public System.IntPtr prints;
+            public IntPtr prints;
         }
 
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, CharSet = System.Runtime.InteropServices.CharSet.Ansi)]
@@ -409,7 +406,7 @@ namespace Unosquare.Labs.LibFprint
             public ushort flags;
 
             /// fp_minutiae*
-            public System.IntPtr minutiae;
+            public IntPtr minutiae;
 
             /// unsigned char*
             public IntPtr binarized;
@@ -535,10 +532,10 @@ namespace Unosquare.Labs.LibFprint
             public int feature_id;
 
             /// int*
-            public System.IntPtr nbrs;
+            public IntPtr nbrs;
 
             /// int*
-            public System.IntPtr ridge_counts;
+            public IntPtr ridge_counts;
 
             /// int
             public int num_nbrs;
@@ -568,12 +565,12 @@ namespace Unosquare.Labs.LibFprint
         ///dev: fp_dev*
         ///status: int
         ///user_data: void*
-        public delegate void fp_dev_open_cb(ref fp_dev dev, int status, System.IntPtr user_data);
+        public delegate void fp_dev_open_cb(ref fp_dev dev, int status, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///user_data: void*
-        public delegate void fp_dev_close_cb(ref fp_dev dev, System.IntPtr user_data);
+        public delegate void fp_dev_close_cb(ref fp_dev dev, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
@@ -581,24 +578,24 @@ namespace Unosquare.Labs.LibFprint
         ///print: fp_print_data*
         ///img: fp_img*
         ///user_data: void*
-        public delegate void fp_enroll_stage_cb(ref fp_dev dev, int result, ref fp_print_data print, ref fp_img img, System.IntPtr user_data);
+        public delegate void fp_enroll_stage_cb(ref fp_dev dev, int result, ref fp_print_data print, ref fp_img img, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///user_data: void*
-        public delegate void fp_enroll_stop_cb(ref fp_dev dev, System.IntPtr user_data);
+        public delegate void fp_enroll_stop_cb(ref fp_dev dev, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///result: int
         ///img: fp_img*
         ///user_data: void*
-        public delegate void fp_verify_cb(ref fp_dev dev, int result, ref fp_img img, System.IntPtr user_data);
+        public delegate void fp_verify_cb(ref fp_dev dev, int result, ref fp_img img, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///user_data: void*
-        public delegate void fp_verify_stop_cb(ref fp_dev dev, System.IntPtr user_data);
+        public delegate void fp_verify_stop_cb(ref fp_dev dev, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
@@ -606,24 +603,24 @@ namespace Unosquare.Labs.LibFprint
         ///match_offset: size_t->unsigned int
         ///img: fp_img*
         ///user_data: void*
-        public delegate void fp_identify_cb(ref fp_dev dev, int result, System.IntPtr match_offset, ref fp_img img, System.IntPtr user_data);
+        public delegate void fp_identify_cb(ref fp_dev dev, int result, IntPtr match_offset, ref fp_img img, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///user_data: void*
-        public delegate void fp_identify_stop_cb(ref fp_dev dev, System.IntPtr user_data);
+        public delegate void fp_identify_stop_cb(ref fp_dev dev, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///result: int
         ///img: fp_img*
         ///user_data: void*
-        public delegate void fp_capture_cb(ref fp_dev dev, int result, ref fp_img img, System.IntPtr user_data);
+        public delegate void fp_capture_cb(ref fp_dev dev, int result, ref fp_img img, IntPtr user_data);
 
         /// Return Type: void
         ///dev: fp_dev*
         ///user_data: void*
-        public delegate void fp_capture_stop_cb(ref fp_dev dev, System.IntPtr user_data);
+        public delegate void fp_capture_stop_cb(ref fp_dev dev, IntPtr user_data);
 
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public struct timeval

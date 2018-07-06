@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Unosquare")]
 [assembly: AssemblyProduct("Unosquare.Labs.LibFprint")]
-[assembly: AssemblyCopyright("Unosquare Copyright ©  2015")]
+[assembly: AssemblyCopyright("Unosquare Copyright ©  2015-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

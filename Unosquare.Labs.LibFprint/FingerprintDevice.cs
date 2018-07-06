@@ -12,11 +12,11 @@
     {
         #region Properties
 
-        internal Nullable<Interop.fp_dscv_dev> DiscoveredDevice { get; set; }
+        internal Interop.fp_dscv_dev? DiscoveredDevice { get; set; }
         internal IntPtr DiscoveredDevicePtr { get; set; }
-        internal Nullable<Interop.fp_driver> Driver { get; set; }
+        internal Interop.fp_driver? Driver { get; set; }
         internal IntPtr RealDevicePtr { get; set; }
-        internal Nullable<Interop.fp_dev> RealDevice { get; set; }
+        internal Interop.fp_dev? RealDevice { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this device is open and ready for operation.
@@ -24,7 +24,8 @@
         /// <value>
         ///   <c>true</c> if this instance is open; otherwise, <c>false</c>.
         /// </value>
-        public bool IsOpen { get { return RealDevice.HasValue; } }
+        public bool IsOpen => RealDevice.HasValue;
+
         /// <summary>
         /// Gets or sets a value indicating whether this device supports imaging.
         /// </summary>
@@ -32,6 +33,7 @@
         ///   <c>true</c> if [supports imaging]; otherwise, <c>false</c>.
         /// </value>
         public bool SupportsImaging { get; protected set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this device supports identification.
         /// </summary>
@@ -39,6 +41,7 @@
         /// <c>true</c> if [supports identification]; otherwise, <c>false</c>.
         /// </value>
         public bool SupportsIdentification { get; protected set; }
+
         /// <summary>
         /// Gets or sets the height of the image.
         /// </summary>
@@ -46,6 +49,7 @@
         /// The height of the image.
         /// </value>
         public int ImageHeight { get; protected set; }
+
         /// <summary>
         /// Gets or sets the width of the image.
         /// </summary>
@@ -53,6 +57,7 @@
         /// The width of the image.
         /// </value>
         public int ImageWidth { get; protected set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this device supports variable imaging dimensions.
         /// </summary>
@@ -60,6 +65,7 @@
         /// <c>true</c> if [supports variable imaging dimensions]; otherwise, <c>false</c>.
         /// </value>
         public bool SupportsVariableImagingDimensions { get; protected set; }
+
         /// <summary>
         /// Gets the enroll stages count for this device.
         /// </summary>
@@ -67,20 +73,22 @@
         /// The enroll stages count.
         /// </value>
         public int EnrollStagesCount { get; protected set; }
+
         /// <summary>
         /// Gets the name of the driver.
         /// </summary>
         /// <value>
         /// The name of the driver.
         /// </value>
-        public string DriverName { get { return Driver.HasValue ? Driver.Value.name : null; } }
+        public string DriverName => Driver?.name;
+
         /// <summary>
         /// Gets the full name of the driver.
         /// </summary>
         /// <value>
         /// The full name of the driver.
         /// </value>
-        public string DriverFullName { get { return Driver.HasValue ? Driver.Value.full_name : null; } }
+        public string DriverFullName => Driver?.full_name;
 
         #endregion
 
@@ -123,20 +131,20 @@
         /// <exception cref="System.InvalidOperationException">Could not open device.</exception>
         public void Open()
         {
-            this.RealDevicePtr = Interop.fp_dev_open(DiscoveredDevicePtr);
-            if (this.RealDevicePtr == IntPtr.Zero)
+            RealDevicePtr = Interop.fp_dev_open(DiscoveredDevicePtr);
+            if (RealDevicePtr == IntPtr.Zero)
                 throw new InvalidOperationException("Could not open device.");
 
-            this.RealDevice = RealDevicePtr.DereferencePtr<Interop.fp_dev>();
+            RealDevice = RealDevicePtr.DereferencePtr<Interop.fp_dev>();
 
             // Populate device info upon opening
-            var realDevice = this.RealDevice.Value;
-            this.SupportsImaging = Interop.fp_dev_supports_imaging(ref realDevice) != 0;
-            this.SupportsIdentification = Interop.fp_dev_supports_identification(ref realDevice) != 0;
-            this.ImageHeight = Interop.fp_dev_get_img_height(ref realDevice);
-            this.ImageWidth = Interop.fp_dev_get_img_width(ref realDevice);
-            this.SupportsVariableImagingDimensions = this.ImageWidth <= 0 || this.ImageHeight <= 0;
-            this.EnrollStagesCount = Interop.fp_dev_get_nr_enroll_stages(ref realDevice);
+            var realDevice = RealDevice.Value;
+            SupportsImaging = Interop.fp_dev_supports_imaging(ref realDevice) != 0;
+            SupportsIdentification = Interop.fp_dev_supports_identification(ref realDevice) != 0;
+            ImageHeight = Interop.fp_dev_get_img_height(ref realDevice);
+            ImageWidth = Interop.fp_dev_get_img_width(ref realDevice);
+            SupportsVariableImagingDimensions = ImageWidth <= 0 || ImageHeight <= 0;
+            EnrollStagesCount = Interop.fp_dev_get_nr_enroll_stages(ref realDevice);
         }
 
         /// <summary>
@@ -145,8 +153,8 @@
         public void Reset()
         {
             if (IsOpen == false) return;
-            Interop.fp_dev_close(this.RealDevicePtr);
-            this.Open();
+            Interop.fp_dev_close(RealDevicePtr);
+            Open();
         }
 
         #endregion
@@ -162,25 +170,23 @@
         {
             // Make sure the device is open
             if (IsOpen == false)
-                this.Open();
+                Open();
 
-            var enrollResultCode = 0;
-            var printDataPtr = IntPtr.Zero;
-            var printImagePtr = IntPtr.Zero;
             byte[] fingerprintData = null;
 
-            enrollResultCode = Interop.fp_enroll_finger_img(this.RealDevicePtr, out printDataPtr, out printImagePtr);
+            var enrollResultCode =
+                Interop.fp_enroll_finger_img(RealDevicePtr, out var printDataPtr, out var printImagePtr);
 
             // Save the PGM file if required by the user
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
             // Create the fingerprint data buffer if the enroll fp data is available
-            if (enrollResultCode == (int)EnrollResult.EnrollStagePassed || enrollResultCode == (int)EnrollResult.EnrollComplete)
+            if (enrollResultCode == (int) EnrollResult.EnrollStagePassed ||
+                enrollResultCode == (int) EnrollResult.EnrollComplete)
             {
                 if (printDataPtr != IntPtr.Zero)
                 {
-                    var bufferPtr = IntPtr.Zero;
-                    var bufferLength = System.Convert.ToInt32(Interop.fp_print_data_get_data(printDataPtr, out bufferPtr));
+                    var bufferLength = Convert.ToInt32(Interop.fp_print_data_get_data(printDataPtr, out var bufferPtr));
                     fingerprintData = new byte[bufferLength];
                     Marshal.Copy(bufferPtr, fingerprintData, 0, fingerprintData.Length);
                     Interop.fp_print_data_free(printDataPtr);
@@ -196,10 +202,7 @@
         /// Enrolls the fingerprint.
         /// </summary>
         /// <returns></returns>
-        public EnrollStageResult EnrollFingerprint()
-        {
-            return EnrollFingerprint(null);
-        }
+        public EnrollStageResult EnrollFingerprint() => EnrollFingerprint(null);
 
         #endregion
 
@@ -216,24 +219,19 @@
         {
             // Make sure the device is open
             if (IsOpen == false)
-                this.Open();
+                Open();
 
             // Acquire the pointer to the stored fingerprint
             var fingerprintPtr = gallery.GetFingerprintPointer(galleryKey);
             if (fingerprintPtr == IntPtr.Zero) return false;
 
-            var printImagePtr = IntPtr.Zero;
-
             // Perform verification
-            var resultCode = Interop.fp_verify_finger_img(this.RealDevicePtr, fingerprintPtr, out printImagePtr);
+            var resultCode = Interop.fp_verify_finger_img(RealDevicePtr, fingerprintPtr, out var printImagePtr);
 
             // Save the PGM file if required by the user
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
-            if (resultCode == (int)Interop.fp_verify_result.FP_VERIFY_MATCH)
-                return true;
-
-            return false;
+            return resultCode == (int) Interop.fp_verify_result.FP_VERIFY_MATCH;
         }
 
         /// <summary>
@@ -242,10 +240,8 @@
         /// <param name="galleryKey">The gallery key.</param>
         /// <param name="gallery">The gallery.</param>
         /// <returns></returns>
-        public bool VerifyFingerprint(string galleryKey, FingerprintGallery gallery)
-        {
-            return this.VerifyFingerprint(galleryKey, gallery, null);
-        }
+        public bool VerifyFingerprint(string galleryKey, FingerprintGallery gallery) =>
+            VerifyFingerprint(galleryKey, gallery, null);
 
         /// <summary>
         /// Verifies the fingerprint.
@@ -268,10 +264,7 @@
         /// </summary>
         /// <param name="enrollResult">The enroll result.</param>
         /// <returns></returns>
-        public bool VerifyFingerprint(EnrollStageResult enrollResult)
-        {
-            return this.VerifyFingerprint(enrollResult, null);
-        }
+        public bool VerifyFingerprint(EnrollStageResult enrollResult) => VerifyFingerprint(enrollResult, null);
 
         #endregion
 
@@ -287,24 +280,16 @@
         {
             // Make sure the device is open
             if (IsOpen == false)
-                this.Open();
+                Open();
 
-            uint matchOffset = 0;
-            var printImagePtr = IntPtr.Zero;
-
-            var matchResult = Interop.fp_identify_finger_img(this.RealDevicePtr, gallery.PointerArray, out matchOffset, out printImagePtr);
+            var matchResult = Interop.fp_identify_finger_img(RealDevicePtr, gallery.PointerArray, out var matchOffset,
+                out var printImagePtr);
 
             // Save the PGM file if required by the user
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
             // Return the key string based on the offset
-            if (matchResult == 1)
-            {
-                return gallery[Convert.ToInt32(matchOffset)];
-            }
-
-            return null;
-
+            return matchResult == 1 ? gallery[Convert.ToInt32(matchOffset)] : null;
         }
 
         /// <summary>
@@ -312,10 +297,7 @@
         /// </summary>
         /// <param name="gallery">The gallery.</param>
         /// <returns></returns>
-        public string IdentifyFingerprint(FingerprintGallery gallery)
-        {
-            return IdentifyFingerprint(gallery, null);
-        }
+        public string IdentifyFingerprint(FingerprintGallery gallery) => IdentifyFingerprint(gallery, null);
 
         #endregion
 
@@ -353,9 +335,9 @@
             // free native resources if there are any.
             if (IsOpen)
             {
-                Interop.fp_dev_close(this.RealDevicePtr);
-                this.RealDevice = null;
-                this.RealDevicePtr = IntPtr.Zero;
+                Interop.fp_dev_close(RealDevicePtr);
+                RealDevice = null;
+                RealDevicePtr = IntPtr.Zero;
             }
         }
 

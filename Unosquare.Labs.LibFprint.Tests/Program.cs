@@ -1,10 +1,9 @@
 using System;
 using System.Threading;
-using Unosquare.Labs.LibFprint;
 
 namespace Unosquare.Labs.LibFprint.Tests
 {
-    class MainClass
+    public class MainClass
     {
         public static void Main(string[] args)
         {
@@ -59,7 +58,7 @@ namespace Unosquare.Labs.LibFprint.Tests
                                     if (isVerified)
                                     {
                                         enrollCount++;
-                                        var printName = "The print " + enrollCount.ToString();
+                                        var printName = "The print " + enrollCount;
                                         gallery.Add(printName, enrollResult);
                                     }
                                     else
@@ -105,15 +104,14 @@ namespace Unosquare.Labs.LibFprint.Tests
                                     Console.WriteLine();
                                 }
                             }
-
                         }
+                    })
+                    { IsBackground = true };
 
-                    }) { IsBackground = true };
 
-                    
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Press A to abort the thread . . .");
-                    
+
                     thread.Start();
 
                     while (true)
@@ -139,11 +137,9 @@ namespace Unosquare.Labs.LibFprint.Tests
 
                             break;
                         }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Press A to abort the thread . . .");
-                        }
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Press A to abort the thread . . .");
                     }
 
 

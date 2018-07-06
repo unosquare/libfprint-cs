@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Unosquare.Labs.LibFprint
 {
@@ -15,13 +13,13 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: char*
         ///drv: fp_driver*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_driver_get_name")]
-        public static extern System.IntPtr fp_driver_get_name(ref fp_driver drv);
+        public static extern IntPtr fp_driver_get_name(ref fp_driver drv);
 
 
         /// Return Type: char*
         ///drv: fp_driver*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_driver_get_full_name")]
-        public static extern System.IntPtr fp_driver_get_full_name(ref fp_driver drv);
+        public static extern IntPtr fp_driver_get_full_name(ref fp_driver drv);
 
 
         /// Return Type: uint16_t->unsigned short
@@ -51,7 +49,7 @@ namespace Unosquare.Labs.LibFprint
 
         public static fp_dscv_dev[] fp_discover_devs_structus(out IntPtr arrayPtr)
         {
-            var devices = new System.Collections.Generic.List<fp_dscv_dev>();
+            var devices = new List<fp_dscv_dev>();
             var devicePtrs = fp_discover_devs_pointers(out arrayPtr);
 
             foreach (var devicePtr in devicePtrs)
@@ -104,14 +102,14 @@ namespace Unosquare.Labs.LibFprint
         ///devs: fp_dscv_dev**
         ///print: fp_print_data*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_dscv_dev_for_print_data")]
-        public static extern System.IntPtr fp_dscv_dev_for_print_data(ref System.IntPtr devs, ref fp_print_data print);
+        public static extern IntPtr fp_dscv_dev_for_print_data(ref IntPtr devs, ref fp_print_data print);
 
 
         /// Return Type: fp_dscv_dev*
         ///devs: fp_dscv_dev**
         ///print: fp_dscv_print*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_dscv_dev_for_dscv_print")]
-        public static extern System.IntPtr fp_dscv_dev_for_dscv_print(ref System.IntPtr devs, ref fp_dscv_print print);
+        public static extern IntPtr fp_dscv_dev_for_dscv_print(ref IntPtr devs, ref fp_dscv_print print);
 
 
         /// Return Type: uint16_t->unsigned short
@@ -122,13 +120,13 @@ namespace Unosquare.Labs.LibFprint
 
         /// Return Type: fp_dscv_print**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_discover_prints")]
-        public static extern System.IntPtr fp_discover_prints();
+        public static extern IntPtr fp_discover_prints();
 
 
         /// Return Type: void
         ///prints: fp_dscv_print**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_dscv_prints_free")]
-        public static extern void fp_dscv_prints_free(ref System.IntPtr prints);
+        public static extern void fp_dscv_prints_free(ref IntPtr prints);
 
 
         /// Return Type: uint16_t->unsigned short
@@ -175,7 +173,7 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: fp_driver*
         ///dev: fp_dev*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_dev_get_driver")]
-        public static extern System.IntPtr fp_dev_get_driver(ref fp_dev dev);
+        public static extern IntPtr fp_dev_get_driver(ref fp_dev dev);
 
 
         /// Return Type: int
@@ -235,14 +233,14 @@ namespace Unosquare.Labs.LibFprint
         ///print_data: fp_print_data**
         ///img: fp_img**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_enroll_finger_img")]
-        public static extern int fp_enroll_finger_img(IntPtr dev, out System.IntPtr print_data, out System.IntPtr img);
+        public static extern int fp_enroll_finger_img(IntPtr dev, out IntPtr print_data, out IntPtr img);
 
 
         /// Return Type: int
         ///dev: fp_dev*
         ///print_data: fp_print_data**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_enroll_finger")]
-        public static extern int fp_enroll_finger(ref fp_dev dev, ref System.IntPtr print_data);
+        public static extern int fp_enroll_finger(ref fp_dev dev, ref IntPtr print_data);
 
 
         /// Return Type: int
@@ -272,7 +270,7 @@ namespace Unosquare.Labs.LibFprint
         ///match_offset: size_t*
         ///img: fp_img**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_identify_finger_img")]
-        public static extern int fp_identify_finger_img(IntPtr dev, IntPtr[] print_gallery, out uint match_offset, out System.IntPtr img);
+        public static extern int fp_identify_finger_img(IntPtr dev, IntPtr[] print_gallery, out uint match_offset, out IntPtr img);
 
 
         /// Return Type: int
@@ -288,14 +286,14 @@ namespace Unosquare.Labs.LibFprint
         ///finger: fp_finger
         ///data: fp_print_data**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_load")]
-        public static extern int fp_print_data_load(ref fp_dev dev, fp_finger finger, ref System.IntPtr data);
+        public static extern int fp_print_data_load(ref fp_dev dev, fp_finger finger, ref IntPtr data);
 
 
         /// Return Type: int
         ///print: fp_dscv_print*
         ///data: fp_print_data**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_from_dscv_print")]
-        public static extern int fp_print_data_from_dscv_print(ref fp_dscv_print print, ref System.IntPtr data);
+        public static extern int fp_print_data_from_dscv_print(ref fp_dscv_print print, ref IntPtr data);
 
 
         /// Return Type: int
@@ -323,14 +321,14 @@ namespace Unosquare.Labs.LibFprint
         ///ret: unsigned char**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_get_data")]
         [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)]
-        public static extern uint fp_print_data_get_data(IntPtr data, out System.IntPtr ret);
+        public static extern uint fp_print_data_get_data(IntPtr data, out IntPtr ret);
 
 
         /// Return Type: fp_print_data*
         ///buf: unsigned char*
         ///buflen: size_t->unsigned int
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_print_data_from_data")]
-        public static extern System.IntPtr fp_print_data_from_data(
+        public static extern IntPtr fp_print_data_from_data(
               byte[] buf
             ,[System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)] uint buflen);
 
@@ -362,7 +360,7 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: unsigned char*
         ///img: fp_img*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_img_get_data")]
-        public static extern System.IntPtr fp_img_get_data(ref fp_img img);
+        public static extern IntPtr fp_img_get_data(ref fp_img img);
 
 
         /// Return Type: int
@@ -381,14 +379,14 @@ namespace Unosquare.Labs.LibFprint
         /// Return Type: fp_img*
         ///img: fp_img*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_img_binarize")]
-        public static extern System.IntPtr fp_img_binarize(ref fp_img img);
+        public static extern IntPtr fp_img_binarize(ref fp_img img);
 
 
         /// Return Type: fp_minutia**
         ///img: fp_img*
         ///nr_minutiae: int*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_img_get_minutiae")]
-        public static extern System.IntPtr fp_img_get_minutiae(ref fp_img img, ref int nr_minutiae);
+        public static extern IntPtr fp_img_get_minutiae(ref fp_img img, ref int nr_minutiae);
 
 
         /// Return Type: void
@@ -412,7 +410,7 @@ namespace Unosquare.Labs.LibFprint
         ///pollfds: fp_pollfd**
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_get_pollfds")]
         [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.SysUInt)]
-        public static extern uint fp_get_pollfds(ref System.IntPtr pollfds);
+        public static extern uint fp_get_pollfds(ref IntPtr pollfds);
 
 
         /// Return Type: int
@@ -449,7 +447,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_dev_open_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_dev_open")]
-        public static extern int fp_async_dev_open(ref fp_dscv_dev ddev, fp_dev_open_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_dev_open(ref fp_dscv_dev ddev, fp_dev_open_cb callback, IntPtr user_data);
 
 
         /// Return Type: void
@@ -457,7 +455,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_dev_close_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_dev_close")]
-        public static extern void fp_async_dev_close(ref fp_dev dev, fp_dev_close_cb callback, System.IntPtr user_data);
+        public static extern void fp_async_dev_close(ref fp_dev dev, fp_dev_close_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -465,7 +463,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_enroll_stage_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_enroll_start")]
-        public static extern int fp_async_enroll_start(ref fp_dev dev, fp_enroll_stage_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_enroll_start(ref fp_dev dev, fp_enroll_stage_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -473,7 +471,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_enroll_stop_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_enroll_stop")]
-        public static extern int fp_async_enroll_stop(ref fp_dev dev, fp_enroll_stop_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_enroll_stop(ref fp_dev dev, fp_enroll_stop_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -482,7 +480,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_verify_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_verify_start")]
-        public static extern int fp_async_verify_start(ref fp_dev dev, ref fp_print_data data, fp_verify_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_verify_start(ref fp_dev dev, ref fp_print_data data, fp_verify_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -490,7 +488,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_verify_stop_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_verify_stop")]
-        public static extern int fp_async_verify_stop(ref fp_dev dev, fp_verify_stop_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_verify_stop(ref fp_dev dev, fp_verify_stop_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -499,7 +497,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_identify_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_identify_start")]
-        public static extern int fp_async_identify_start(ref fp_dev dev, ref System.IntPtr gallery, fp_identify_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_identify_start(ref fp_dev dev, ref IntPtr gallery, fp_identify_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -507,7 +505,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_identify_stop_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_identify_stop")]
-        public static extern int fp_async_identify_stop(ref fp_dev dev, fp_identify_stop_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_identify_stop(ref fp_dev dev, fp_identify_stop_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -516,7 +514,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_capture_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_capture_start")]
-        public static extern int fp_async_capture_start(ref fp_dev dev, int unconditional, fp_capture_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_capture_start(ref fp_dev dev, int unconditional, fp_capture_cb callback, IntPtr user_data);
 
 
         /// Return Type: int
@@ -524,7 +522,7 @@ namespace Unosquare.Labs.LibFprint
         ///callback: fp_capture_stop_cb
         ///user_data: void*
         [System.Runtime.InteropServices.DllImportAttribute(FingerprintLibrary, EntryPoint = "fp_async_capture_stop")]
-        public static extern int fp_async_capture_stop(ref fp_dev dev, fp_capture_stop_cb callback, System.IntPtr user_data);
+        public static extern int fp_async_capture_stop(ref fp_dev dev, fp_capture_stop_cb callback, IntPtr user_data);
 
     }
 }

@@ -5,7 +5,7 @@ namespace Unosquare.Labs.LibFprint
     /// <summary>
     /// Helper methods for pointer management
     /// </summary>
-    static internal class Extensions
+    internal static class Extensions
     {
         /// <summary>
         /// Dereferences the PTR into the given type.
@@ -13,7 +13,7 @@ namespace Unosquare.Labs.LibFprint
         /// <typeparam name="T"></typeparam>
         /// <param name="ptr">The PTR.</param>
         /// <returns></returns>
-        static public T DereferencePtr<T>(this IntPtr ptr)
+        public static T DereferencePtr<T>(this IntPtr ptr)
         {
             return (T)System.Runtime.InteropServices.Marshal.PtrToStructure(ptr, typeof(T));
         }
@@ -23,7 +23,7 @@ namespace Unosquare.Labs.LibFprint
         /// </summary>
         /// <param name="baseAddress">The base address.</param>
         /// <returns></returns>
-        static public IntPtr[] ToPointerArray(this IntPtr baseAddress)
+        public static IntPtr[] ToPointerArray(this IntPtr baseAddress)
         {
             var ptrList = new System.Collections.Generic.List<IntPtr>();
 
