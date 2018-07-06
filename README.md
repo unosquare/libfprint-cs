@@ -1,5 +1,8 @@
-# libfprint-cs
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/libfprint-cs/)](https://github.com/igrigorik/ga-beacon)
+[![Build Status](https://travis-ci.org/unosquare/libfprint-cs.svg?branch=master)](https://travis-ci.org/unosquare/libfprint-cs)
+[![Build status](https://ci.appveyor.com/api/projects/status/jxi3ixge0p8jx9e8/branch/master?svg=true)](https://ci.appveyor.com/project/geoperez/libfprint-cs/branch/master)
+
+# libfprint-cs
 
 The long-awaited C# (.net/mono) wrapper for the great fingerprint reader interfacing library libfprint
 
