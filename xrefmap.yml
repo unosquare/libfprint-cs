@@ -80,6 +80,7 @@ references:
   name: EnrollStageResult
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult__ctor_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.#ctor
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.EnrollStageResult
   nameWithType: EnrollStageResult.EnrollStageResult
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.FingerprintData
@@ -92,6 +93,7 @@ references:
   name: FingerprintData
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_FingerprintData_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.FingerprintData
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.FingerprintData
   nameWithType: EnrollStageResult.FingerprintData
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollComplete
@@ -104,6 +106,7 @@ references:
   name: IsEnrollComplete
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_IsEnrollComplete_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollComplete
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollComplete
   nameWithType: EnrollStageResult.IsEnrollComplete
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollFailure
@@ -116,6 +119,7 @@ references:
   name: IsEnrollFailure
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_IsEnrollFailure_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollFailure
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.IsEnrollFailure
   nameWithType: EnrollStageResult.IsEnrollFailure
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.IsFatalError
@@ -128,6 +132,7 @@ references:
   name: IsFatalError
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_IsFatalError_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.IsFatalError
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.IsFatalError
   nameWithType: EnrollStageResult.IsFatalError
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.IsSuccess
@@ -140,6 +145,7 @@ references:
   name: IsSuccess
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_IsSuccess_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.IsSuccess
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.IsSuccess
   nameWithType: EnrollStageResult.IsSuccess
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.RequiresNewCall
@@ -152,6 +158,7 @@ references:
   name: RequiresNewCall
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_RequiresNewCall_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.RequiresNewCall
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.RequiresNewCall
   nameWithType: EnrollStageResult.RequiresNewCall
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.RequiresRetry
@@ -164,6 +171,7 @@ references:
   name: RequiresRetry
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_RequiresRetry_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.RequiresRetry
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.RequiresRetry
   nameWithType: EnrollStageResult.RequiresRetry
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.Result
@@ -176,6 +184,7 @@ references:
   name: Result
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_Result_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.Result
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.Result
   nameWithType: EnrollStageResult.Result
 - uid: Unosquare.Labs.LibFprint.EnrollStageResult.ResultCode
@@ -188,6 +197,7 @@ references:
   name: ResultCode
   href: api/Unosquare.Labs.LibFprint.EnrollStageResult.html#Unosquare_Labs_LibFprint_EnrollStageResult_ResultCode_
   commentId: Overload:Unosquare.Labs.LibFprint.EnrollStageResult.ResultCode
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.EnrollStageResult.ResultCode
   nameWithType: EnrollStageResult.ResultCode
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice
@@ -212,6 +222,7 @@ references:
   name: Dispose
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_Dispose_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.Dispose
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.Dispose
   nameWithType: FingerprintDevice.Dispose
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.DriverFullName
@@ -224,6 +235,7 @@ references:
   name: DriverFullName
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_DriverFullName_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.DriverFullName
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.DriverFullName
   nameWithType: FingerprintDevice.DriverFullName
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.DriverName
@@ -236,6 +248,7 @@ references:
   name: DriverName
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_DriverName_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.DriverName
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.DriverName
   nameWithType: FingerprintDevice.DriverName
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.EnrollFingerprint
@@ -254,6 +267,7 @@ references:
   name: EnrollFingerprint
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_EnrollFingerprint_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.EnrollFingerprint
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.EnrollFingerprint
   nameWithType: FingerprintDevice.EnrollFingerprint
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.EnrollStagesCount
@@ -266,6 +280,7 @@ references:
   name: EnrollStagesCount
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_EnrollStagesCount_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.EnrollStagesCount
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.EnrollStagesCount
   nameWithType: FingerprintDevice.EnrollStagesCount
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.Finalize
@@ -278,6 +293,7 @@ references:
   name: Finalize
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_Finalize_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.Finalize
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.Finalize
   nameWithType: FingerprintDevice.Finalize
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.IdentifyFingerprint(Unosquare.Labs.LibFprint.FingerprintGallery)
@@ -296,6 +312,7 @@ references:
   name: IdentifyFingerprint
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_IdentifyFingerprint_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.IdentifyFingerprint
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.IdentifyFingerprint
   nameWithType: FingerprintDevice.IdentifyFingerprint
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.ImageHeight
@@ -308,6 +325,7 @@ references:
   name: ImageHeight
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_ImageHeight_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.ImageHeight
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.ImageHeight
   nameWithType: FingerprintDevice.ImageHeight
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.ImageWidth
@@ -320,6 +338,7 @@ references:
   name: ImageWidth
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_ImageWidth_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.ImageWidth
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.ImageWidth
   nameWithType: FingerprintDevice.ImageWidth
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.IsOpen
@@ -332,6 +351,7 @@ references:
   name: IsOpen
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_IsOpen_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.IsOpen
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.IsOpen
   nameWithType: FingerprintDevice.IsOpen
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.Open
@@ -344,6 +364,7 @@ references:
   name: Open
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_Open_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.Open
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.Open
   nameWithType: FingerprintDevice.Open
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.Reset
@@ -356,6 +377,7 @@ references:
   name: Reset
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_Reset_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.Reset
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.Reset
   nameWithType: FingerprintDevice.Reset
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsIdentification
@@ -368,6 +390,7 @@ references:
   name: SupportsIdentification
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_SupportsIdentification_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.SupportsIdentification
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsIdentification
   nameWithType: FingerprintDevice.SupportsIdentification
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsImaging
@@ -380,6 +403,7 @@ references:
   name: SupportsImaging
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_SupportsImaging_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.SupportsImaging
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsImaging
   nameWithType: FingerprintDevice.SupportsImaging
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsVariableImagingDimensions
@@ -392,6 +416,7 @@ references:
   name: SupportsVariableImagingDimensions
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_SupportsVariableImagingDimensions_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.SupportsVariableImagingDimensions
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.SupportsVariableImagingDimensions
   nameWithType: FingerprintDevice.SupportsVariableImagingDimensions
 - uid: Unosquare.Labs.LibFprint.FingerprintDevice.VerifyFingerprint(System.String,Unosquare.Labs.LibFprint.FingerprintGallery)
@@ -422,6 +447,7 @@ references:
   name: VerifyFingerprint
   href: api/Unosquare.Labs.LibFprint.FingerprintDevice.html#Unosquare_Labs_LibFprint_FingerprintDevice_VerifyFingerprint_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDevice.VerifyFingerprint
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDevice.VerifyFingerprint
   nameWithType: FingerprintDevice.VerifyFingerprint
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager
@@ -440,6 +466,7 @@ references:
   name: DiscoverDevices
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_DiscoverDevices_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.DiscoverDevices
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.DiscoverDevices
   nameWithType: FingerprintDeviceManager.DiscoverDevices
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Dispose
@@ -452,6 +479,7 @@ references:
   name: Dispose
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Dispose_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.Dispose
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Dispose
   nameWithType: FingerprintDeviceManager.Dispose
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Finalize
@@ -464,14 +492,9 @@ references:
   name: Finalize
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Finalize_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.Finalize
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Finalize
   nameWithType: FingerprintDeviceManager.Finalize
-- uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize
-  name: Initialize()
-  href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Initialize
-  commentId: M:Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize
-  fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize()
-  nameWithType: FingerprintDeviceManager.Initialize()
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize(System.Int32)
   name: Initialize(Int32)
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Initialize_System_Int32_
@@ -482,6 +505,7 @@ references:
   name: Initialize
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Initialize_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Initialize
   nameWithType: FingerprintDeviceManager.Initialize
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Instance
@@ -494,6 +518,7 @@ references:
   name: Instance
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_Instance_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.Instance
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.Instance
   nameWithType: FingerprintDeviceManager.Instance
 - uid: Unosquare.Labs.LibFprint.FingerprintDeviceManager.IsInitialized
@@ -506,6 +531,7 @@ references:
   name: IsInitialized
   href: api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html#Unosquare_Labs_LibFprint_FingerprintDeviceManager_IsInitialized_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintDeviceManager.IsInitialized
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintDeviceManager.IsInitialized
   nameWithType: FingerprintDeviceManager.IsInitialized
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery
@@ -524,6 +550,7 @@ references:
   name: FingerprintGallery
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery__ctor_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.#ctor
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.FingerprintGallery
   nameWithType: FingerprintGallery.FingerprintGallery
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.Add(System.String,System.Byte[])
@@ -545,6 +572,7 @@ references:
   name: Add
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_Add_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.Add
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.Add
   nameWithType: FingerprintGallery.Add
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.AddRange(System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.Byte[]}})
@@ -560,6 +588,7 @@ references:
   name: AddRange
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_AddRange_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.AddRange
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.AddRange
   nameWithType: FingerprintGallery.AddRange
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.AllKeys
@@ -572,6 +601,7 @@ references:
   name: AllKeys
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_AllKeys_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.AllKeys
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.AllKeys
   nameWithType: FingerprintGallery.AllKeys
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.Dispose
@@ -590,6 +620,7 @@ references:
   name: Dispose
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_Dispose_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.Dispose
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.Dispose
   nameWithType: FingerprintGallery.Dispose
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.Finalize
@@ -602,6 +633,7 @@ references:
   name: Finalize
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_Finalize_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.Finalize
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.Finalize
   nameWithType: FingerprintGallery.Finalize
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.HasKey(System.String)
@@ -614,6 +646,7 @@ references:
   name: HasKey
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_HasKey_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.HasKey
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.HasKey
   nameWithType: FingerprintGallery.HasKey
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.Item(System.Int32)
@@ -629,6 +662,7 @@ references:
   name: Item
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_Item_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.Item
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.Item
   nameWithType: FingerprintGallery.Item
 - uid: Unosquare.Labs.LibFprint.FingerprintGallery.Remove(System.String)
@@ -641,6 +675,7 @@ references:
   name: Remove
   href: api/Unosquare.Labs.LibFprint.FingerprintGallery.html#Unosquare_Labs_LibFprint_FingerprintGallery_Remove_
   commentId: Overload:Unosquare.Labs.LibFprint.FingerprintGallery.Remove
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.FingerprintGallery.Remove
   nameWithType: FingerprintGallery.Remove
 - uid: Unosquare.Labs.LibFprint.PgmFormatReader
@@ -674,5 +709,6 @@ references:
   name: Read
   href: api/Unosquare.Labs.LibFprint.PgmFormatReader.html#Unosquare_Labs_LibFprint_PgmFormatReader_Read_
   commentId: Overload:Unosquare.Labs.LibFprint.PgmFormatReader.Read
+  isSpec: "True"
   fullName: Unosquare.Labs.LibFprint.PgmFormatReader.Read
   nameWithType: PgmFormatReader.Read
