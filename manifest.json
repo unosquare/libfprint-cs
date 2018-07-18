@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "9pCad9N4brjiZxj5rQdA1w=="
+          "hash": "VFTu6teVtJtHqpV8+BmjIQ=="
         }
       },
       "is_incremental": false,
@@ -63,7 +63,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollResult.html",
-          "hash": "FzTRZj3/7DC0E1S8ohFI1A=="
+          "hash": "SY7O7fQ5eKFwULU2RoYIYg=="
         }
       },
       "is_incremental": false,
@@ -75,7 +75,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollStageResult.html",
-          "hash": "yaxeZ3e8NLsbELy56ATftw=="
+          "hash": "Jf8fTbEjbuhXThj8o/TwWw=="
         }
       },
       "is_incremental": false,
@@ -87,7 +87,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDevice.html",
-          "hash": "Yx7O/qNbW5WfoP8cXmZHKQ=="
+          "hash": "IFrlV9qFXNr8SB9b3zZKEg=="
         }
       },
       "is_incremental": false,
@@ -99,7 +99,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html",
-          "hash": "DfOwxGU65kSwPu8hTa2iVA=="
+          "hash": "5lIesdAf6U5IP8m9nXYz5Q=="
         }
       },
       "is_incremental": false,
@@ -111,7 +111,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintGallery.html",
-          "hash": "HyXl1Fal8aRz/Kzu4RCRgg=="
+          "hash": "l8DZz7Qu2+ARfEUg4+2Bjg=="
         }
       },
       "is_incremental": false,
@@ -123,7 +123,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.PgmFormatReader.html",
-          "hash": "XuXCicxqyy2f16ggKFjooA=="
+          "hash": "6+N4WT4BHRJLg8YfwJ+IOg=="
         }
       },
       "is_incremental": false,
@@ -135,7 +135,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.html",
-          "hash": "qbHDKJk4FugqnQ5QzM9ugQ=="
+          "hash": "46cKMTeaXbU+zFYyKLLNyQ=="
         }
       },
       "is_incremental": false,
