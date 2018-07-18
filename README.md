@@ -5,6 +5,7 @@
 # libfprint-cs
 
 The long-awaited C# (.net/mono) wrapper for the great fingerprint reader interfacing library libfprint
+*Note: A few people have reported a System.DllNotFoundException being thrown at runtime. This is a Linux project. There is no libfprint.dll for Windows*
 
 From the <a target="_blank" href="http://www.freedesktop.org/wiki/Software/fprint/libfprint/">libfprint website</a>:
 <blockquote>
