@@ -27,7 +27,6 @@ before_build:
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
-- nuget restore Unosquare.Labs.LibFprint.sln
 after_build:
 - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
