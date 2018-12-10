@@ -1,6 +1,7 @@
 version: '1.0.{build}'
 image: 
 - Visual Studio 2017
+- Ubuntu
 configuration:
 - Release
 platform: Any CPU
@@ -12,24 +13,20 @@ notifications:
 environment:
   # Don't report back to the mothership
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  COVERALLS_REPO_TOKEN:  
-       secure: dVpAqavd3jP7LMW+oswLBPfihwiGDZUtWDQWJadMO1Gj61SYegxNsGTZOT2BYN6+
   op_build_user: "Geo Perez"
   op_build_user_email: "geovanni.perez@gmail.com"
   access_token:
        secure: HzWdswNyfQbQ0vLk9IQyO+Ei9mxoPYp9rvv6HPhtC9J/Fm7EHRzyV953pbPRXI9I
-init:
-- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
 after_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             docfx docfx.json
             git config --global credential.helper store
