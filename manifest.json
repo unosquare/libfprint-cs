@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "EnyJ4aTbvF1/DnbDv/0diQ=="
+          "hash": "8xvoXfaZFR0WeCylgB+/uQ=="
         }
       },
       "is_incremental": false,
@@ -74,7 +74,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollResult.html",
-          "hash": "ay+57pST12jbzjWSCARKbA=="
+          "hash": "SJj30e0zdQlqyROIUJOzCg=="
         }
       },
       "is_incremental": false,
@@ -86,7 +86,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.EnrollStageResult.html",
-          "hash": "hwm0FlcckdkaeM0B2jHniA=="
+          "hash": "sTnvCf91r3dDm1q7V9+cQg=="
         }
       },
       "is_incremental": false,
@@ -98,7 +98,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDevice.html",
-          "hash": "ZQsWVTcoz7/32hEWEVJ/8Q=="
+          "hash": "gCLBIrO/nBugrmcmxYtWoA=="
         }
       },
       "is_incremental": false,
@@ -110,7 +110,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintDeviceManager.html",
-          "hash": "xX6PbnG/yc1PMjBVZw5pqg=="
+          "hash": "4myiBSDpSX3ZOFnp/xDYbw=="
         }
       },
       "is_incremental": false,
@@ -122,7 +122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.FingerprintGallery.html",
-          "hash": "RuyG71YEcZL1UyyCaseiXA=="
+          "hash": "aoaQWHfreJ5xn5F822ecGw=="
         }
       },
       "is_incremental": false,
@@ -134,7 +134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.PgmFormatReader.html",
-          "hash": "poFHiHEW/mj8ROTYZ68+TQ=="
+          "hash": "Y9HpNgwfMCgbV+WjYXRY/A=="
         }
       },
       "is_incremental": false,
@@ -146,7 +146,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LibFprint.html",
-          "hash": "+sjfkNIy4drRFmqMmYRbrg=="
+          "hash": "loP3l1NX0/0BcNmpfhAUdA=="
         }
       },
       "is_incremental": false,
@@ -181,26 +181,36 @@
     {
       "status": {
         "can_incremental": true,
-        "incrementalPhase": "build"
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 7,
+          "skipped_file_count": 7
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build"
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         }
       }
     },
@@ -208,7 +218,9 @@
       "status": {
         "can_incremental": false,
         "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
-        "incrementalPhase": "postProcessing"
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {}
     }
