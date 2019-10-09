@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Copyright>Copyright (c) 2019 - Unosquare</Copyright>
     <Company>Unosquare</Company>
-    <AssemblyName>Unosquare.WaveShare.FingerprintModule</AssemblyName>
+    <AssemblyName>Unosquare.Labs.LibFprint</AssemblyName>
     <LangVersion>8.0</LangVersion>  
   </PropertyGroup>  
   
