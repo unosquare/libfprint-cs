@@ -104,7 +104,7 @@
         }
 
         /// <summary>
-        /// Helper method to save and free scanned images
+        /// Helper method to save and free scanned images.
         /// </summary>
         /// <param name="printImagePtr">The print image PTR.</param>
         /// <param name="pgmFilePath">The PGM file path.</param>
@@ -126,7 +126,7 @@
 
         /// <summary>
         /// Opens this fingerprint scanning device.
-        /// This method has to be called before operating the device
+        /// This method has to be called before operating the device.
         /// </summary>
         /// <exception cref="System.InvalidOperationException">Could not open device.</exception>
         public void Open()
@@ -181,8 +181,8 @@
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
             // Create the fingerprint data buffer if the enroll fp data is available
-            if (enrollResultCode == (int) EnrollResult.EnrollStagePassed ||
-                enrollResultCode == (int) EnrollResult.EnrollComplete)
+            if (enrollResultCode == (int)EnrollResult.EnrollStagePassed ||
+                enrollResultCode == (int)EnrollResult.EnrollComplete)
             {
                 if (printDataPtr != IntPtr.Zero)
                 {
@@ -231,7 +231,7 @@
             // Save the PGM file if required by the user
             SaveImageToDisk(printImagePtr, pgmFilePath, true);
 
-            return resultCode == (int) Interop.fp_verify_result.FP_VERIFY_MATCH;
+            return resultCode == (int)Interop.fp_verify_result.FP_VERIFY_MATCH;
         }
 
         /// <summary>
@@ -252,11 +252,9 @@
         public bool VerifyFingerprint(EnrollStageResult enrollResult, string pgmFilePath)
         {
             const string galleryKey = "dummy";
-            using (var gallery = new FingerprintGallery())
-            {
-                gallery.Add(galleryKey, enrollResult);
-                return VerifyFingerprint(galleryKey, gallery, pgmFilePath);
-            }
+            using var gallery = new FingerprintGallery();
+            gallery.Add(galleryKey, enrollResult);
+            return VerifyFingerprint(galleryKey, gallery, pgmFilePath);
         }
 
         /// <summary>

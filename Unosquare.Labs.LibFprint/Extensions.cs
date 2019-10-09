@@ -3,7 +3,7 @@ namespace Unosquare.Labs.LibFprint
     using System;
 
     /// <summary>
-    /// Helper methods for pointer management
+    /// Helper methods for pointer management.
     /// </summary>
     internal static class Extensions
     {
@@ -13,13 +13,10 @@ namespace Unosquare.Labs.LibFprint
         /// <typeparam name="T"></typeparam>
         /// <param name="ptr">The PTR.</param>
         /// <returns></returns>
-        public static T DereferencePtr<T>(this IntPtr ptr)
-        {
-            return (T)System.Runtime.InteropServices.Marshal.PtrToStructure(ptr, typeof(T));
-        }
+        public static T DereferencePtr<T>(this IntPtr ptr) => (T)System.Runtime.InteropServices.Marshal.PtrToStructure(ptr, typeof(T));
 
         /// <summary>
-        /// Turns the given base address to an array of pointers
+        /// Turns the given base address to an array of pointers.
         /// </summary>
         /// <param name="baseAddress">The base address.</param>
         /// <returns></returns>
@@ -27,7 +24,6 @@ namespace Unosquare.Labs.LibFprint
         {
             var ptrList = new System.Collections.Generic.List<IntPtr>();
 
-            //var arrayPtr = baseAddress;
             if (baseAddress == IntPtr.Zero) return ptrList.ToArray();
 
             while (true)
@@ -42,7 +38,5 @@ namespace Unosquare.Labs.LibFprint
 
             return ptrList.ToArray();
         }
-
     }
 }
-

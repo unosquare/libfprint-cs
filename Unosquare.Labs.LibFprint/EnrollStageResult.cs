@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.Labs.LibFprint
 {
     /// <summary>
-    /// Represents the state of a Fingerprint Enrollment operation
+    /// Represents the state of a Fingerprint Enrollment operation.
     /// </summary>
     public class EnrollStageResult
     {
@@ -14,7 +14,7 @@
         {
             ResultCode = enrollCode;
 
-            Result = ResultCode < 0 ? EnrollResult.Unspecified : (EnrollResult) enrollCode;
+            Result = ResultCode < 0 ? EnrollResult.Unspecified : (EnrollResult)enrollCode;
 
             FingerprintData = fingerprintData;
         }
@@ -26,7 +26,7 @@
         /// The result code.
         /// </value>
         public int ResultCode { get; protected set; }
-        
+
         /// <summary>
         /// Gets or sets the friendly result code.
         /// </summary>
@@ -34,7 +34,7 @@
         /// The result.
         /// </value>
         public EnrollResult Result { get; protected set; }
-        
+
         /// <summary>
         /// Gets the buffer data holding the fingerprint scan.
         /// This is what needs to be saved in a database that will later be loased on to a
@@ -64,7 +64,7 @@
                     Result == EnrollResult.RetryScanTooShort;
             }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether the result contains a fatal error.
         /// </summary>

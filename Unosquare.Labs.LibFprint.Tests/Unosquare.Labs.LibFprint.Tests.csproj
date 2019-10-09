@@ -6,4 +6,7 @@
     <AssemblyName>Unosquare.Labs.LibFprint.Test</AssemblyName>
     <LangVersion>8.0</LangVersion>  
   </PropertyGroup>  
+  <ItemGroup>
+    <ProjectReference Include="..\Unosquare.Labs.LibFprint\Unosquare.Labs.LibFprint.csproj" />
+  </ItemGroup>  
 </Project>

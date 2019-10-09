@@ -9,7 +9,6 @@
     /// </summary>
     public sealed class FingerprintDeviceManager : IDisposable
     {
-
         #region Singleton Implementation
 
         /// <summary>
@@ -26,12 +25,12 @@
         }
 
         /// <summary>
-        /// Gets the single instance of the Fingerprint Device Manager
+        /// Gets the single instance of the Fingerprint Device Manager.
         /// </summary>
         /// <value>
         /// The instance.
         /// </value>
-        public static FingerprintDeviceManager Instance => m_Instance ?? (m_Instance = new FingerprintDeviceManager());
+        public static FingerprintDeviceManager Instance => m_Instance ??= new FingerprintDeviceManager();
 
         #endregion
 
@@ -51,7 +50,7 @@
         /// Discovered device references.
         /// </summary>
         /// <value>
-        /// The device dicovery results PTR.
+        /// The device discovery results PTR.
         /// </value>
         private IntPtr DeviceDicoveryResultsPtr { get; set; }
 
@@ -102,7 +101,7 @@
                 {
                     DiscoveredDevice = deviceStruct,
                     DiscoveredDevicePtr = devicePtr,
-                    Driver = driverStruct
+                    Driver = driverStruct,
                 };
 
                 result.Add(managedDevice);
@@ -170,6 +169,5 @@
         }
 
         #endregion
-
     }
 }

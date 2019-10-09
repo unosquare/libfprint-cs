@@ -15,7 +15,7 @@
 
         /// <summary>
         /// Tuple holding Identifier-Pointer pairs.
-        /// Keys are strings, while values are pointers to fingerprint data
+        /// Keys are strings, while values are pointers to fingerprint data.
         /// </summary>
         private class Fingerprint
         {
@@ -77,7 +77,7 @@
         /// <exception cref="ArgumentException">
         /// fingerprintData is invalid
         /// or
-        /// key needs to contain a valid string
+        /// key needs to contain a valid string.
         /// </exception>
         /// <exception cref="FormatException">The fingerprint data buffer is invalid.</exception>
         private void RegisterFingerprintData(string key, byte[] fingerprintData)
@@ -128,9 +128,9 @@
         /// <param name="fingerprints">The fingerprints.</param>
         public void AddRange(IEnumerable<Tuple<string, byte[]>> fingerprints)
         {
-            foreach (var fingerprintTuple in fingerprints)
+            foreach (var (key, data) in fingerprints)
             {
-                RegisterFingerprintData(fingerprintTuple.Item1, fingerprintTuple.Item2);
+                RegisterFingerprintData(key, data);
             }
 
             RebuildPointerArray();
@@ -160,13 +160,13 @@
         public string[] AllKeys() => InternalList.Select(s => s.Identifier).ToArray();
 
         /// <summary>
-        /// Removes a fingerprint from the gallery given its key
+        /// Removes a fingerprint from the gallery given its key.
         /// </summary>
         /// <param name="key">The key.</param>
         public void Remove(string key) => Remove(key, true);
 
         /// <summary>
-        /// Removes a fingerprint from the gallery given its key
+        /// Removes a fingerprint from the gallery given its key.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="rebuild">if set to <c>true</c> rebuilds the pointer array.</param>
@@ -189,10 +189,7 @@
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        internal IntPtr GetFingerprintPointer(string key)
-        {
-            return HasKey(key) ? InternalList.FirstOrDefault(f => f.Identifier.Equals(key)).Reference : IntPtr.Zero;
-        }
+        internal IntPtr GetFingerprintPointer(string key) => HasKey(key) ? InternalList.FirstOrDefault(f => f.Identifier.Equals(key)).Reference : IntPtr.Zero;
 
         #endregion
 
@@ -231,6 +228,5 @@
         }
 
         #endregion
-
     }
 }
