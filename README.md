@@ -4,6 +4,8 @@
 
 # libfprint-cs
 
+**WE ARE LOOKING FOR A NEW HOME FOR THIS PROJECT. APPLY AT:** https://adoptoposs.org/p/c905cc68-9a61-4b69-bf52-b27bda1fd6b3"
+
 The long-awaited C# (.net/mono) wrapper for the great fingerprint reader interfacing library libfprint
 *Note: A few people have reported a System.DllNotFoundException being thrown at runtime. This is a Linux project. There is no libfprint.dll for Windows*
 
